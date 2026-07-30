@@ -20,6 +20,13 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
   );
 
   useEffect(() => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(media.matches);
 
@@ -52,6 +59,13 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     const frame = requestAnimationFrame(() => {
       const lenis = lenisRef.current?.lenis;
       if (!lenis) return;
+
+      // Re-assert top after Lenis init (browser may have restored scroll)
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+      lenis.scrollTo(0, { immediate: true });
 
       const onScroll = () => ScrollTrigger.update();
       lenis.on("scroll", onScroll);

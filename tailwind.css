@@ -36,6 +36,20 @@
     --radius: 0.5rem;
   }
 
+  /* Hide page scrollbar — scroll still works via wheel / Lenis */
+  html,
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+    width: 0;
+    height: 0;
+  }
+
   .dark {
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;

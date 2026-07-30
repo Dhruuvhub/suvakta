@@ -129,6 +129,13 @@ function backspaceFrom(
  */
 export function usePageIntro(lenis?: Lenis | null) {
   useLayoutEffect(() => {
+    // Always begin intro / first paint from the hero
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+    lenis?.scrollTo(0, { immediate: true });
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const veil = document.getElementById("page-intro-veil");
     const loader = document.getElementById("sun-loader");

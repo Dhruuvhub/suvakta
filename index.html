@@ -8,6 +8,11 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link href="tailwind.css" rel="stylesheet" />
+  <script>
+    // Always land on the hero after a full reload (disable browser scroll restore)
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  </script>
 </head>
 
 <body>
