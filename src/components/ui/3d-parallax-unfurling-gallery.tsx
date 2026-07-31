@@ -31,7 +31,7 @@ type ImageCardProps = {
 
 const ImageCard = ({ src, onLoad }: ImageCardProps) => {
   return (
-    <div className="relative h-[200px] w-full flex-shrink-0 cursor-pointer bg-[#111] transition-transform duration-300 will-change-transform backface-hidden [transform-style:preserve-3d] hover:scale-[1.02] sm:h-[300px] md:h-[400px]">
+    <div className="relative h-[200px] w-full flex-shrink-0 cursor-pointer bg-suvakta-950 transition-transform duration-300 will-change-transform backface-hidden [transform-style:preserve-3d] hover:scale-[1.02] sm:h-[300px] md:h-[400px]">
       <img
         src={src}
         alt="Gallery Asset"
@@ -113,13 +113,13 @@ export default function ParallaxUnfurlingGallery() {
       ref={scrollWrapperRef}
       data-lenis-prevent=""
       data-lenis-prevent-wheel=""
-      className="h-full w-full overflow-x-hidden overflow-y-auto overscroll-contain bg-[#050505] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="h-full w-full overflow-x-hidden overflow-y-auto overscroll-contain bg-[#0A1A1C] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       data-ready={isReady ? "true" : "false"}
       style={{ touchAction: "pan-y" }}
     >
       <section
         ref={containerRef}
-        className="relative h-[600vh] w-full bg-[#050505] font-sans text-white selection:bg-white selection:text-black"
+        className="relative h-[600vh] w-full bg-[#0A1A1C] font-sans text-white selection:bg-white selection:text-black"
       >
         <div className="sticky top-0 flex h-[min(92vh,920px)] w-full items-center justify-center overflow-hidden">
           <motion.div
@@ -128,7 +128,7 @@ export default function ParallaxUnfurlingGallery() {
               height: bannerHeight,
               borderRadius: bannerRadius,
               borderWidth: bannerBorderWidth,
-              borderColor: "#2c2738",
+              borderColor: "#1A3D42",
             }}
             className="relative mx-auto flex max-w-[1920px] items-center justify-center overflow-hidden bg-black will-change-transform backface-hidden [transform-style:preserve-3d]"
           >

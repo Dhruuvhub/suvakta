@@ -75,12 +75,12 @@ export function ExpandableGallery() {
       </div>
 
       {/* ── "Go to gallery" Button matching Navbar TicketButton website design ── */}
-      <div className="relative z-10 mt-6 md:mt-8 flex justify-center">
+      <div className="relative z-10 mt-6 flex justify-center md:mt-8">
         <a
           href="/gallery"
-          className="relative text-[15.3846px] font-normal items-center bg-red-300 shadow-[rgba(0,0,0,0.15)_0px_3.84615px_0px_0px] box-border caret-transparent flex auto-cols-[1fr] grid-cols-[1fr_1fr] grid-rows-[auto_auto] h-[42.3077px] justify-center leading-[15.3846px] max-w-full min-h-[auto] min-w-[auto] outline-[3px] border border-neutral-900 pb-[1.53846px] px-[19.2308px] rounded-[153.846px] border-solid text-neutral-900 md:text-[14.2222px] md:shadow-[rgba(0,0,0,0.15)_0px_3.55556px_0px_0px] md:h-[39.1111px] md:leading-[14.2222px] md:pb-[1.42222px] md:px-[17.7778px] md:rounded-[142.222px] hover:shadow-[rgba(0,0,0,0.5)_0px_0px_0px_0px] hover:outline-0 transition-all"
+          className="relative flex h-[42.3077px] max-w-full items-center justify-center rounded-[153.846px] border-2 border-suvakta-900 bg-suvakta-accent px-[19.2308px] pb-[1.53846px] text-[15.3846px] font-normal leading-[15.3846px] text-suvakta-900 shadow-[rgba(0,0,0,0.32)_0px_3.84615px_0px_0px] transition-all hover:shadow-[rgba(0,0,0,0.55)_0px_0px_0px_0px] md:h-[39.1111px] md:rounded-[142.222px] md:px-[17.7778px] md:pb-[1.42222px] md:text-[14.2222px] md:leading-[14.2222px] md:shadow-[rgba(0,0,0,0.32)_0px_3.55556px_0px_0px]"
         >
-          <span className="text-[15.3846px] font-bold box-border caret-transparent block tracking-[-0.153846px] leading-[15.3846px] min-h-[auto] min-w-[auto] outline-[3px] text-nowrap mt-[0.961538px] md:text-[14.2222px] md:tracking-[-0.142222px] md:leading-[14.2222px] md:mt-[0.888889px]">
+          <span className="mt-[0.961538px] block text-nowrap text-[15.3846px] font-bold leading-[15.3846px] tracking-[-0.153846px] md:mt-[0.888889px] md:text-[14.2222px] md:leading-[14.2222px] md:tracking-[-0.142222px]">
             Go to gallery
           </span>
         </a>

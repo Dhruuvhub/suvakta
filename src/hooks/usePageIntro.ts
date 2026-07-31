@@ -38,19 +38,35 @@ function measureBubbleWidth(
   return Math.max(width, 40);
 }
 
+/** Width for every prefix length so typing + box grow in lockstep */
+function measurePrefixWidths(
+  bubble: HTMLElement,
+  textEl: HTMLElement,
+  text: string,
+) {
+  const widths: number[] = [];
+  for (let i = 0; i <= text.length; i++) {
+    widths.push(measureBubbleWidth(bubble, textEl, text.slice(0, i)));
+  }
+  return widths;
+}
+
 function typeTo(
   tl: gsap.core.Timeline,
   el: HTMLElement,
   text: string,
   position: gsap.Position,
   bubble: HTMLElement | null,
-  fromW: number,
-  toW: number,
+  widths: number[] | null,
   charDuration = 0.06,
 ) {
   const duration = Math.max(0.35, text.length * charDuration);
   const state = { i: 0 };
   let last = -1;
+
+  if (bubble && widths) {
+    gsap.set(bubble, { width: widths[0] });
+  }
 
   tl.to(
     state,
@@ -63,19 +79,19 @@ function typeTo(
         if (n === last) return;
         last = n;
         el.textContent = text.slice(0, n);
+        if (bubble && widths) {
+          gsap.set(bubble, { width: widths[n] });
+        }
+      },
+      onComplete: () => {
+        el.textContent = text;
+        if (bubble && widths) {
+          gsap.set(bubble, { width: widths[text.length] });
+        }
       },
     },
     position,
   );
-
-  if (bubble) {
-    tl.fromTo(
-      bubble,
-      { width: fromW },
-      { width: toW, duration, ease: "none", overwrite: "auto" },
-      position,
-    );
-  }
 }
 
 function backspaceFrom(
@@ -84,8 +100,7 @@ function backspaceFrom(
   text: string,
   position: gsap.Position,
   bubble: HTMLElement | null,
-  fromW: number,
-  toW: number,
+  widths: number[] | null,
   charDuration = 0.038,
 ) {
   const duration = Math.max(0.25, text.length * charDuration);
@@ -93,6 +108,10 @@ function backspaceFrom(
   let last = text.length + 1;
 
   tl.set(el, { textContent: text }, position);
+  if (bubble && widths) {
+    tl.set(bubble, { width: widths[text.length] }, position);
+  }
+
   tl.to(
     state,
     {
@@ -104,19 +123,19 @@ function backspaceFrom(
         if (n === last) return;
         last = n;
         el.textContent = text.slice(0, n);
+        if (bubble && widths) {
+          gsap.set(bubble, { width: widths[n] });
+        }
+      },
+      onComplete: () => {
+        el.textContent = "";
+        if (bubble && widths) {
+          gsap.set(bubble, { width: widths[0] });
+        }
       },
     },
     position,
   );
-
-  if (bubble) {
-    tl.fromTo(
-      bubble,
-      { width: fromW },
-      { width: toW, duration, ease: "none", overwrite: "auto" },
-      position,
-    );
-  }
 }
 
 /**
@@ -282,26 +301,24 @@ export function usePageIntro(lenis?: Lenis | null) {
         );
       }
 
-      // Pre-measure bubble widths once (avoids layout thrash while typing)
-      const wEmpty =
-        bubble && textEl ? measureBubbleWidth(bubble, textEl, "") : 40;
-      const wA =
-        bubble && textEl ? measureBubbleWidth(bubble, textEl, MSG_A) : 120;
-      const wB =
-        bubble && textEl ? measureBubbleWidth(bubble, textEl, MSG_B) : 130;
-      const wDate =
-        bubble && textEl ? measureBubbleWidth(bubble, textEl, DATE_MSG) : 220;
+      // Pre-measure width at every character so box + typing stay locked
+      const widthsA =
+        bubble && textEl ? measurePrefixWidths(bubble, textEl, MSG_A) : null;
+      const widthsB =
+        bubble && textEl ? measurePrefixWidths(bubble, textEl, MSG_B) : null;
+      const widthsDate =
+        bubble && textEl ? measurePrefixWidths(bubble, textEl, DATE_MSG) : null;
 
-      if (bubble) gsap.set(bubble, { width: wEmpty });
+      if (bubble && widthsA) gsap.set(bubble, { width: widthsA[0] });
 
       if (textEl) {
-        typeTo(tl, textEl, MSG_A, "sun+=0.45", bubble, wEmpty, wA);
+        typeTo(tl, textEl, MSG_A, "sun+=0.45", bubble, widthsA);
         tl.to({}, { duration: 0.28 });
-        backspaceFrom(tl, textEl, MSG_A, ">", bubble, wA, wEmpty);
+        backspaceFrom(tl, textEl, MSG_A, ">", bubble, widthsA);
         tl.to({}, { duration: 0.12 });
-        typeTo(tl, textEl, MSG_B, ">", bubble, wEmpty, wB);
+        typeTo(tl, textEl, MSG_B, ">", bubble, widthsB);
         tl.to({}, { duration: 0.32 });
-        backspaceFrom(tl, textEl, MSG_B, ">", bubble, wB, wEmpty);
+        backspaceFrom(tl, textEl, MSG_B, ">", bubble, widthsB);
         tl.to({}, { duration: 0.08 });
       } else {
         tl.to({}, { duration: 2.5 }, "sun+=0.45");
@@ -351,7 +368,7 @@ export function usePageIntro(lenis?: Lenis | null) {
       }
 
       if (textEl) {
-        typeTo(tl, textEl, DATE_MSG, "fly", bubble, wEmpty, wDate, 0.048);
+        typeTo(tl, textEl, DATE_MSG, "fly", bubble, widthsDate, 0.048);
       }
 
       if (caret) {

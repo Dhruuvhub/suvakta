@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { SUVAKTA } from "@/lib/colors";
 
 type SmilingSunProps = {
   className?: string;
@@ -74,11 +75,11 @@ export function SmilingSun({ className, lookRange = 0.11 }: SmilingSunProps) {
         className="pointer-events-none absolute left-1/2 top-[50%] w-[38%] -translate-x-1/2 -translate-y-1/2"
       >
         <svg viewBox="0 0 60 40" className="h-auto w-full overflow-visible">
-          <circle cx="20" cy="15" r="3.8" fill="#121212" />
-          <circle cx="40" cy="15" r="3.8" fill="#121212" />
+          <circle cx="20" cy="15" r="3.8" fill={SUVAKTA[900]} />
+          <circle cx="40" cy="15" r="3.8" fill={SUVAKTA[900]} />
           <path
             d="M22 25c3.5 5.5 12.5 5.5 16 0"
-            stroke="#121212"
+            stroke={SUVAKTA[900]}
             strokeWidth="3"
             strokeLinecap="round"
             fill="none"

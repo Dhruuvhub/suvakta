@@ -7,12 +7,12 @@ export const AboutSection = () => {
   useAboutStripes();
 
   return (
-    <section className="relative text-[15.3846px] bg-neutral-900 box-border caret-transparent leading-5 outline-[3px] border-neutral-900 overflow-hidden border-b-2 md:text-[14.2222px] md:leading-[18.4889px]">
-      <div className="text-[15.3846px] box-border caret-transparent leading-5 max-w-[375px] outline-[3px] mx-auto px-[15.3846px] md:text-[14.2222px] md:leading-[18.4889px] md:max-w-screen-xl md:px-[56.8889px]">
-        <div className="relative box-border flex h-[100px] justify-center outline-[3px] md:h-[80px]" />
+    <section id="about" className="section-copy relative overflow-hidden border-b-2 border-suvakta-900 bg-suvakta-800">
+      <div className="section-container">
+        <div className="relative flex h-[clamp(4.5rem,14vw,6.25rem)] justify-center" />
         <div
           id="about-blue-card"
-          className="relative text-white text-[15.3846px] items-center shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] box-border caret-transparent flex flex-col justify-center leading-5 outline-[3px] w-full z-[1] bg-neutral-900 py-[100px] md:text-[14.2222px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px] md:leading-[18.4889px] md:py-[48px]"
+          className="relative z-[1] flex w-full flex-col items-center justify-center bg-suvakta-600 py-[clamp(3rem,12vw,6.25rem)] text-white shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:py-[48px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]"
         >
           <DecorativeImageBurst
             variantClass="left-0 top-0"
@@ -30,8 +30,8 @@ export const AboutSection = () => {
             thirdImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed52338c367abcc5b39ef_about-2.avif"
             fourthImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82d_about-6.avif"
           />
-          <div className="absolute text-[15.3846px] box-border caret-transparent h-full leading-5 outline-[3px] pointer-events-none w-full border border-blue-500 border-solid left-0 top-0 md:text-[14.2222px] md:leading-[18.4889px]" />
-          <div className="absolute text-[15.3846px] items-center bg-blue-500 bottom-[calc(100%_-_0.961538px)] box-border caret-transparent gap-x-[3.84615px] flex justify-start leading-5 outline-[3px] gap-y-[3.84615px] pl-[5.76923px] pr-[7.69231px] py-[3.84615px] rounded-t-[1.92308px] left-0 md:text-[14.2222px] md:bottom-[calc(100%_-_0.888889px)] md:gap-x-[3.55556px] md:leading-[18.4889px] md:gap-y-[3.55556px] md:pl-[5.33333px] md:pr-[7.11111px] md:py-[3.55556px] md:rounded-t-[1.77778px]">
+          <div className="absolute text-[15.3846px] box-border caret-transparent h-full leading-5 outline-[3px] pointer-events-none w-full border border-suvakta-400 border-solid left-0 top-0 md:text-[14.2222px] md:leading-[18.4889px]" />
+          <div className="absolute text-[15.3846px] items-center bg-suvakta-400 bottom-[calc(100%_-_0.961538px)] box-border caret-transparent gap-x-[3.84615px] flex justify-start leading-5 outline-[3px] gap-y-[3.84615px] pl-[5.76923px] pr-[7.69231px] py-[3.84615px] rounded-t-[1.92308px] left-0 md:text-[14.2222px] md:bottom-[calc(100%_-_0.888889px)] md:gap-x-[3.55556px] md:leading-[18.4889px] md:gap-y-[3.55556px] md:pl-[5.33333px] md:pr-[7.11111px] md:py-[3.55556px] md:rounded-t-[1.77778px]">
             <img
               src="https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-25.svg"
               alt="Icon"
@@ -48,11 +48,11 @@ export const AboutSection = () => {
       {/* Same strip style as hero — synced in useScrollLines */}
       <div
         id="about-stripes-zone"
-        className="relative box-border flex h-[160px] w-full justify-center overflow-hidden outline-[3px] md:h-[180px]"
+        className="relative flex h-[clamp(9rem,22vw,11.25rem)] w-full justify-center overflow-hidden md:h-[180px]"
       >
         <RainbowVertical
           variant="about"
-          className="h-full w-[289.743px] md:w-[401.778px]"
+          className="h-full w-[min(289.743px,78vw)] md:w-[401.778px]"
         />
       </div>
     </section>

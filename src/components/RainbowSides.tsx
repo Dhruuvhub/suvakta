@@ -1,3 +1,5 @@
+import { STRIP_COLORS, STRIP_OUTLINE } from "@/lib/colors";
+
 /** Exact Anima icon-5 / icon-6 geometry — one path per band for GSAP targeting */
 
 type RainbowSidesProps = {
@@ -17,22 +19,22 @@ const BANDS: Band[] = [
   {
     kind: "color",
     d: "M26 0V400C26 510.457 115.543 600 226 600H321",
-    color: "#F489A3",
+    color: STRIP_COLORS[1],
   },
   {
     kind: "color",
     d: "M76 0V400C76 482.843 143.157 550 226 550H321",
-    color: "#F0BB0D",
+    color: STRIP_COLORS[2],
   },
   {
     kind: "color",
     d: "M126 0V400C126 455.228 170.772 500 226 500H321",
-    color: "#F3A20F",
+    color: STRIP_COLORS[3],
   },
   {
     kind: "color",
     d: "M176 0V400C176 427.614 198.386 450 226 450H321",
-    color: "#F97028",
+    color: STRIP_COLORS[0],
   },
 ];
 
@@ -55,7 +57,7 @@ export const RainbowSides = ({ className, side }: RainbowSidesProps) => {
               : "rainbow-band rainbow-band--color"
           }
           d={band.d}
-          stroke={band.kind === "outline" ? "#121212" : band.color}
+          stroke={band.kind === "outline" ? STRIP_OUTLINE : band.color}
           strokeWidth={band.kind === "outline" ? 52 : 48}
           fill="none"
           strokeLinecap="butt"

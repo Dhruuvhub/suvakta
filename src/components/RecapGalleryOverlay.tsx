@@ -49,7 +49,7 @@ export function RecapGalleryOverlay({ open, onClose }: RecapGalleryOverlayProps)
           <button
             type="button"
             aria-label="Close recap gallery"
-            className="absolute inset-0 border-0 bg-neutral-950/45 backdrop-blur-md"
+            className="absolute inset-0 border-0 bg-suvakta-950/45 backdrop-blur-md"
             onClick={onClose}
           />
 
@@ -59,7 +59,7 @@ export function RecapGalleryOverlay({ open, onClose }: RecapGalleryOverlayProps)
             aria-label="2024 Recap gallery"
             data-lenis-prevent=""
             data-lenis-prevent-wheel=""
-            className="relative z-10 h-[min(92vh,920px)] w-[min(96vw,1400px)] overflow-hidden rounded-[28px] border border-white/15 bg-[#050505] shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+            className="relative z-10 h-[min(92vh,920px)] w-[min(96vw,1400px)] overflow-hidden rounded-[28px] border border-white/15 bg-suvakta-950 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
             initial={{ opacity: 0, scale: 0.94, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}

@@ -11,7 +11,7 @@ export function PageIntro() {
     <>
       <div
         id="page-intro-veil"
-        className="pointer-events-auto fixed inset-0 z-[900] bg-orange-100"
+        className="pointer-events-auto fixed inset-0 z-[900] bg-suvakta-50"
         aria-hidden="true"
       />
       <SunLoader />

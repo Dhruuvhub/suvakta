@@ -1,3 +1,5 @@
+import { STRIP_COLORS, STRIP_OUTLINE } from "@/lib/colors";
+
 /** Exact Anima icon-27 geometry — one path per vertical band */
 
 type RainbowVerticalProps = {
@@ -8,15 +10,15 @@ type RainbowVerticalProps = {
 
 const XS = [426, 376, 326, 276, 226, 176, 126, 76, 26] as const;
 const COLORS = [
-  "#F97028",
-  "#F489A3",
-  "#F0BB0D",
-  "#F3A20F",
-  "#F97028",
-  "#F489A3",
-  "#F0BB0D",
-  "#F3A20F",
-  "#F97028",
+  STRIP_COLORS[0],
+  STRIP_COLORS[1],
+  STRIP_COLORS[2],
+  STRIP_COLORS[3],
+  STRIP_COLORS[0],
+  STRIP_COLORS[1],
+  STRIP_COLORS[2],
+  STRIP_COLORS[3],
+  STRIP_COLORS[0],
 ] as const;
 
 export const RainbowVertical = ({
@@ -38,7 +40,7 @@ export const RainbowVertical = ({
           key={`o-${i}`}
           className="rainbow-band rainbow-band--outline"
           d={`M${x} 0V600`}
-          stroke="#000000"
+          stroke={STRIP_OUTLINE}
           strokeWidth={52}
           fill="none"
         />

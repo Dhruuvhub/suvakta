@@ -6,10 +6,10 @@ const phraseImgClass =
 
 export const HeroHeading = () => {
   return (
-    <div className="flex w-full max-w-[1100px] flex-col items-center text-[15.3846px] leading-5 outline-[3px] md:text-[14.2222px] md:leading-[18.4889px]">
+    <div className="section-copy flex w-full max-w-[1100px] flex-col items-center">
       <h1
         data-intro="phrase"
-        className="relative z-[1] flex w-full flex-nowrap items-center justify-center outline-[3px] will-change-transform"
+        className="relative z-[1] flex w-full flex-wrap items-center justify-center will-change-transform"
       >
         <button
           type="button"
@@ -26,10 +26,10 @@ export const HeroHeading = () => {
       </h1>
       <div
         data-intro="banner"
-        className="relative mt-1 origin-center text-[15.3846px] leading-5 outline-[3px] will-change-transform md:text-[14.2222px] md:leading-[18.4889px]"
+        className="relative mt-1 w-full max-w-[min(100%,42rem)] origin-center will-change-transform"
       >
-        <div className="rounded-[5.76923px] border border-solid border-neutral-900 bg-amber-500 shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] outline-[3px] md:rounded-[5.33333px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]">
-          <h2 className="mx-[11.5385px] mt-[4.61538px] text-center font-sugar_peachy text-[46.1538px] leading-[41.5385px] text-white text-nowrap outline-[3px] md:mx-[17.7778px] md:mt-[7.11111px] md:text-[71.1111px] md:leading-[64px] md:text-wrap">
+        <div className="rounded-[5.76923px] border border-solid border-suvakta-900 bg-suvakta-500 shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:rounded-[5.33333px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]">
+          <h2 className="mx-[clamp(0.5rem,3vw,1.1rem)] mt-[4.61538px] text-center font-sugar_peachy text-[clamp(1.75rem,8vw,2.875rem)] leading-[1.1] text-white md:mx-[17.7778px] md:mt-[7.11111px] md:text-[71.1111px] md:leading-[64px]">
             FlowFest is back.
           </h2>
         </div>

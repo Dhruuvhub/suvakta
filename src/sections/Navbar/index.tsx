@@ -1,19 +1,25 @@
 import { NavLinks } from "@/sections/Navbar/components/NavLinks";
+import { MobileNav } from "@/sections/Navbar/components/MobileNav";
 import { BrandLogo } from "@/components/BrandLogo";
 import { TicketButton } from "@/components/TicketButton";
 
 export const Navbar = () => {
   return (
-    <nav className="fixed text-[15.3846px] box-border caret-transparent leading-5 outline-[3px] pointer-events-none z-[300] inset-0 md:text-[14.2222px] md:leading-[18.4889px]">
+    <nav className="pointer-events-none fixed inset-x-0 top-0 z-[300]">
       <div
         data-intro="nav"
-        className="absolute left-0 top-0 h-[71.1538px] w-full border-b border-neutral-900 bg-orange-100 text-[15.3846px] leading-5 outline-[3px] pointer-events-auto will-change-transform md:h-[65.7778px] md:text-[14.2222px] md:leading-[18.4889px]"
+        className="pointer-events-auto h-[71.1538px] w-full border-b border-suvakta-900 bg-suvakta-50 will-change-transform md:h-[65.7778px]"
       >
-        <div className="text-[15.3846px] box-border caret-transparent leading-5 max-w-[375px] outline-[3px] mx-auto px-[15.3846px] md:text-[14.2222px] md:leading-[18.4889px] md:max-w-screen-xl md:px-[56.8889px]">
-          <div className="text-[15.3846px] items-center box-border caret-transparent flex h-[71.1538px] justify-between leading-5 outline-[3px] md:text-[14.2222px] md:h-[65.7778px] md:leading-[18.4889px]">
-            <NavLinks />
+        <div className="section-container section-copy">
+          <div className="relative flex h-[71.1538px] items-center justify-between gap-3 md:h-[65.7778px]">
+            <div className="flex min-w-0 flex-1 items-center gap-2 md:flex-none">
+              <MobileNav />
+              <NavLinks />
+            </div>
             <BrandLogo />
-            <TicketButton />
+            <div className="flex shrink-0 items-center">
+              <TicketButton />
+            </div>
           </div>
         </div>
       </div>

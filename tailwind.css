@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
+    --background: 186 33% 94%;
+    --foreground: 188 41% 12%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -85,14 +85,44 @@
 }
 
 @layer base {
+  html {
+    overflow-x: clip;
+    scroll-behavior: auto;
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  /* Fluid page container — mobile-first, desktop matches Anima export */
+  .section-container {
+    @apply mx-auto w-full max-w-full px-4;
+    @apply md:max-w-screen-xl md:px-[56.8889px];
+  }
+
+  .section-copy {
+    @apply text-[15.3846px] leading-5;
+    @apply md:text-[14.2222px] md:leading-[18.4889px];
+  }
+
+  .touch-target {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center;
   }
 }
