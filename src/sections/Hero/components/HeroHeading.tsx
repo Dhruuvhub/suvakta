@@ -26,11 +26,11 @@ export const HeroHeading = () => {
       </h1>
       <div
         data-intro="banner"
-        className="relative mt-1 w-full max-w-[min(100%,42rem)] origin-center will-change-transform"
+        className="relative mt-1 w-max max-w-[min(100%,48rem)] origin-center rotate-[-3.5deg] will-change-transform"
       >
-        <div className="rounded-[5.76923px] border border-solid border-suvakta-900 bg-suvakta-500 shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:rounded-[5.33333px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]">
-          <h2 className="mx-[clamp(0.5rem,3vw,1.1rem)] mt-[4.61538px] text-center font-sugar_peachy text-[clamp(1.75rem,8vw,2.875rem)] leading-[1.1] text-white md:mx-[17.7778px] md:mt-[7.11111px] md:text-[71.1111px] md:leading-[64px]">
-            FlowFest is back.
+        <div className="rounded-[5.76923px] border border-solid border-suvakta-900 bg-suvakta-500 px-2.5 py-1.5 shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:rounded-[5.33333px] md:px-5 md:py-3 md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]">
+          <h2 className="whitespace-nowrap text-center font-sugar_peachy text-[clamp(1.05rem,4.6vw,2.75rem)] leading-none text-white md:text-[56px] md:leading-[1]">
+            Debate and Discourse
           </h2>
         </div>
       </div>

@@ -91,14 +91,17 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       root
       ref={lenisRef}
       options={{
-        // Duration-based easing → heavier, inertia-like scroll
+        // Duration-based easing → heavier, inertia-like scroll (wheel + touch)
         autoRaf: false,
         duration: 1.75,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         wheelMultiplier: 0.8,
-        touchMultiplier: 1.15,
-        syncTouch: false,
+        // Mobile / touch: same heavy smooth feel as desktop
+        syncTouch: true,
+        syncTouchLerp: 0.07,
+        touchInertiaExponent: 1.35,
+        touchMultiplier: 0.9,
       }}
     >
       {children}

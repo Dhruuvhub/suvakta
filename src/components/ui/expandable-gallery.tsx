@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 
 const PHOTOS = [
@@ -32,46 +33,53 @@ const PHOTOS = [
 
 const transition = {
   type: "tween",
-  duration: 0.65,
+  duration: 0.35,
   ease: [0.22, 1, 0.36, 1],
 } as const;
 
 export function ExpandableGallery() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   return (
     <section className="relative flex w-full flex-col items-center justify-start bg-transparent px-4 md:px-8">
       {/* ── Static Hero Photo Stack ── */}
       <div className="relative mx-auto flex h-[260px] w-full max-w-6xl items-center justify-center md:h-[310px]">
-        {PHOTOS.map((photo, index) => (
-          <motion.div
-            key={photo.id}
-            initial={false}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              rotate: photo.rotation ?? 0,
-              x: photo.x ?? 0,
-              y: photo.y ?? 0,
-              zIndex: photo.zIndex ?? index,
-            }}
-            transition={transition}
-            whileHover={{
-              scale: 1.05,
-              y: (photo.y ?? 0) - 12,
-              rotate: (photo.rotation ?? 0) * 0.8,
-              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-            }}
-            className="absolute h-44 w-44 overflow-hidden rounded-[2.5rem] border-[6px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] md:h-60 md:w-60 md:rounded-[3rem]"
-          >
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
-              loading="eager"
-              decoding="async"
-              draggable={false}
-            />
-          </motion.div>
-        ))}
+        {PHOTOS.map((photo, index) => {
+          const isHovered = hoveredId === photo.id;
+
+          return (
+            <motion.div
+              key={photo.id}
+              initial={false}
+              animate={{
+                opacity: 1,
+                scale: isHovered ? 1.08 : 1,
+                rotate: photo.rotation ?? 0,
+                x: photo.x ?? 0,
+                y: photo.y ?? 0,
+                zIndex: isHovered ? 50 : (photo.zIndex ?? index),
+              }}
+              transition={{
+                ...transition,
+                scale: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+                zIndex: { duration: 0 },
+              }}
+              onHoverStart={() => setHoveredId(photo.id)}
+              onHoverEnd={() => setHoveredId(null)}
+              className="absolute h-44 w-44 cursor-pointer overflow-hidden rounded-[2.5rem] border-[6px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] md:h-60 md:w-60 md:rounded-[3rem]"
+              style={{ zIndex: isHovered ? 50 : photo.zIndex ?? index }}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+                loading="eager"
+                decoding="async"
+                draggable={false}
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* ── "Go to gallery" Button matching Navbar TicketButton website design ── */}
