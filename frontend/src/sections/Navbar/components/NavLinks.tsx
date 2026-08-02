@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { NAV_LINKS } from "@/sections/Navbar/navLinks";
 
 const linkClass =
@@ -6,11 +7,14 @@ const linkClass =
 export const NavLinks = () => {
   return (
     <ul className="hidden list-none gap-x-[23.0769px] pl-0 md:flex md:gap-x-[24.8889px]">
-      {NAV_LINKS.map(({ label, href }) => (
-        <li key={href}>
-          <a href={href} className={`${linkClass} text-[15.3846px] md:text-[14.2222px]`}>
+      {NAV_LINKS.map(({ label, to }) => (
+        <li key={to}>
+          <Link
+            to={to}
+            className={`${linkClass} text-[15.3846px] md:text-[14.2222px]`}
+          >
             {label}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

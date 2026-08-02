@@ -12,23 +12,24 @@ export const AboutSection = () => {
         <div className="relative flex h-[clamp(4.5rem,14vw,6.25rem)] justify-center" />
         <div
           id="about-blue-card"
-          className="relative z-[1] flex w-full flex-col items-center justify-center bg-suvakta-600 py-[clamp(3rem,12vw,6.25rem)] text-white shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:py-[48px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]"
+          className="relative z-[1] flex w-full flex-col items-center justify-center overflow-hidden bg-suvakta-600 py-[clamp(3rem,12vw,6.25rem)] text-white shadow-[rgba(0,0,0,0.15)_0px_7.69231px_0px_0px] md:min-h-[480px] md:py-[48px] md:shadow-[rgba(0,0,0,0.15)_0px_7.11111px_0px_0px]"
         >
           <DecorativeImageBurst
-            variantClass="left-0 top-0"
-            imageClass=""
-            firstImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82a_about-3.avif"
-            secondImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523372605b32799121d_about-4.avif"
-            thirdImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523589745e7ab7d19e6_about-5.avif"
-            fourthImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82a_about-3.avif"
+            images={[
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82a_about-3.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523372605b32799121d_about-4.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523589745e7ab7d19e6_about-5.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82a_about-3.avif",
+            ]}
           />
           <DecorativeImageBurst
-            variantClass="-scale-100 right-0 top-auto bottom-0 md:top-0 md:bottom-auto"
-            imageClass="-scale-100"
-            firstImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82d_about-6.avif"
-            secondImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523055e1b8f349b28d1_c49152d8c588c19b6d48252716aad7ee_about-1.avif"
-            thirdImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed52338c367abcc5b39ef_about-2.avif"
-            fourthImageSrc="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82d_about-6.avif"
+            flipped
+            images={[
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82d_about-6.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523055e1b8f349b28d1_c49152d8c588c19b6d48252716aad7ee_about-1.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed52338c367abcc5b39ef_about-2.avif",
+              "https://c.animaapp.com/mrxuckkzwKTRkk/assets/682ed523a929671dd06fa82d_about-6.avif",
+            ]}
           />
           <div className="absolute text-[15.3846px] box-border caret-transparent h-full leading-5 outline-[3px] pointer-events-none w-full border border-suvakta-400 border-solid left-0 top-0 md:text-[14.2222px] md:leading-[18.4889px]" />
           <div className="absolute text-[15.3846px] items-center bg-suvakta-400 bottom-[calc(100%_-_0.961538px)] box-border caret-transparent gap-x-[3.84615px] flex justify-start leading-5 outline-[3px] gap-y-[3.84615px] pl-[5.76923px] pr-[7.69231px] py-[3.84615px] rounded-t-[1.92308px] left-0 md:text-[14.2222px] md:bottom-[calc(100%_-_0.888889px)] md:gap-x-[3.55556px] md:leading-[18.4889px] md:gap-y-[3.55556px] md:pl-[5.33333px] md:pr-[7.11111px] md:py-[3.55556px] md:rounded-t-[1.77778px]">

@@ -5,7 +5,7 @@ export const AboutContent = () => {
   const [recapOpen, setRecapOpen] = useState(false);
 
   return (
-    <div className="section-copy flex w-full max-w-[min(100%,19.4rem)] flex-col items-center gap-y-[clamp(1.25rem,5vw,1.9rem)] px-2 pt-4 text-center md:max-w-[597.333px] md:gap-y-[28.4444px] md:pt-[14.2222px]">
+    <div className="section-copy relative z-10 flex w-full max-w-[min(100%,19.4rem)] flex-col items-center gap-y-[clamp(1.25rem,5vw,1.9rem)] px-2 pt-4 text-center md:max-w-[520px] md:gap-y-[28.4444px] md:pt-[14.2222px]">
       <h2 className="flex flex-col items-center font-sugar_peachy text-[clamp(1.75rem,8vw,2.625rem)] leading-[1.1] md:block md:text-[57.7778px] md:leading-[52px]">
         The No.1 Fest for:{" "}
         <br className="md:hidden" />

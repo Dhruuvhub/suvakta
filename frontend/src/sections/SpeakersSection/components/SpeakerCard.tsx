@@ -9,7 +9,7 @@ export type SpeakerCardProps = {
 export const SpeakerCard = (props: SpeakerCardProps) => {
   return (
     <div
-      className={`section-copy relative w-full min-w-0 md:w-[calc(33.33%_-_35.5556px)] ${props.className ?? ""}`}
+      className={`section-copy relative w-full min-w-0 ${props.className ?? ""}`}
     >
       <div className="relative flex w-full flex-col items-center">
         <div className="relative z-[2] mb-[-21.1538px] flex h-[42.3077px] items-center justify-center rounded-[7.69231px] border border-suvakta-900 bg-white px-[15.3846px] md:mb-[-19.5556px] md:h-[39.1111px] md:px-[14.2222px] md:rounded-[7.11111px]">

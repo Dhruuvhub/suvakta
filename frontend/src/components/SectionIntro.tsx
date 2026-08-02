@@ -1,6 +1,6 @@
 export const SectionIntro = () => {
   return (
-    <div className="section-copy relative w-full transform-none md:w-[calc(33.33%_-_35.5556px)] md:translate-y-[88.8889px]">
+    <div className="section-copy relative w-full">
       <div className="flex flex-col items-center gap-y-[clamp(1.25rem,4vw,1.45rem)] px-2 md:items-start md:gap-y-[28.4444px] md:px-[28.4444px]">
         <h2 className="flex flex-col items-center font-sugar-peachy text-[clamp(1.75rem,8vw,3.375rem)] leading-[1.1] md:items-start md:text-[57.7778px] md:leading-[52px]">
           Our 2025{" "}

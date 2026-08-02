@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/sections/Navbar/navLinks";
 
@@ -52,15 +53,15 @@ export function MobileNav() {
             className="fixed left-4 right-4 top-[calc(71px+0.5rem)] z-[290] rounded-2xl border border-suvakta-900 bg-suvakta-50 p-4 shadow-[rgba(0,0,0,0.15)_0px_8px_0px_0px]"
           >
             <ul className="flex list-none flex-col gap-3 p-0">
-              {NAV_LINKS.map(({ label, href }) => (
-                <li key={href}>
-                  <a
-                    href={href}
+              {NAV_LINKS.map(({ label, to }) => (
+                <li key={to}>
+                  <Link
+                    to={to}
                     className={`${linkClass} block rounded-xl px-3 py-3 text-[15.3846px] hover:bg-suvakta-100/80`}
                     onClick={() => setOpen(false)}
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
