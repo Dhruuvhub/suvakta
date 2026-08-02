@@ -237,9 +237,21 @@ export function usePageIntro(lenis?: Lenis | null) {
         },
       });
 
-      // Soft veil lift so strips / cream show behind the sun
+      // Soft veil lift — drop pointer capture immediately so nav stays clickable
       if (veil) {
-        tl.to(veil, { opacity: 0, duration: 0.7, ease: "power2.out" }, 0);
+        tl.to(
+          veil,
+          {
+            opacity: 0,
+            pointerEvents: "none",
+            duration: 0.7,
+            ease: "power2.out",
+            onComplete: () => {
+              veil.style.pointerEvents = "none";
+            },
+          },
+          0,
+        );
       }
 
       // ——— Phase 1: strips ———
@@ -441,6 +453,10 @@ export function usePageIntro(lenis?: Lenis | null) {
       ctx.revert();
       document.body.style.overflow = prevOverflow;
       lenis?.start();
+      // Leaving home mid-intro (e.g. to /leaderboard) — clear overlay lock
+      veil?.remove();
+      loader?.remove();
+      window.dispatchEvent(new Event("page-intro-complete"));
     };
   }, [lenis]);
 }

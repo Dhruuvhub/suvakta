@@ -6,6 +6,11 @@ export function ScrollManager() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // Clear any leftover intro locks when changing routes
+    document.body.style.overflow = "";
+    document.getElementById("page-intro-veil")?.remove();
+    document.getElementById("sun-loader")?.remove();
+
     const id = hash.replace(/^#/, "");
 
     if (id) {
