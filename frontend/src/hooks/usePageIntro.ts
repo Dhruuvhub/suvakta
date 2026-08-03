@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type Lenis from "lenis";
@@ -147,13 +147,21 @@ function backspaceFrom(
  * 5) Header slides down (no fade)
  */
 export function usePageIntro(lenis?: Lenis | null) {
+  // Keep Lenis in a ref so the intro effect does NOT re-run when Lenis
+  // attaches — a re-run used to remove #sun-loader from the DOM while
+  // React still owned it, leaving a blank hero (strips only, no sun).
+  const lenisRef = useRef(lenis);
+  lenisRef.current = lenis;
+
   useLayoutEffect(() => {
+    const getLenis = () => lenisRef.current;
+
     // Always begin intro / first paint from the hero
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
     window.scrollTo(0, 0);
-    lenis?.scrollTo(0, { immediate: true });
+    getLenis()?.scrollTo(0, { immediate: true });
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const veil = document.getElementById("page-intro-veil");
@@ -204,10 +212,10 @@ export function usePageIntro(lenis?: Lenis | null) {
     if (banner) gsap.set(banner, { opacity: 0, y: 36, scale: 0.86, rotate: -9 });
     if (gallery) gsap.set(gallery, { opacity: 0, y: 48 });
     if (veil) gsap.set(veil, { opacity: 1, pointerEvents: "auto" });
-    if (loader) gsap.set(loader, { autoAlpha: 1, x: 0, y: 0, scale: 1 });
+    if (loader) gsap.set(loader, { autoAlpha: 1, x: 0, y: 0, scale: 1, visibility: "visible" });
     if (textEl) textEl.textContent = "";
 
-    lenis?.stop();
+    getLenis()?.stop();
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -221,15 +229,17 @@ export function usePageIntro(lenis?: Lenis | null) {
 
     let spinTween: gsap.core.Tween | null = null;
     let caretTween: gsap.core.Tween | null = null;
+    let completed = false;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
+          completed = true;
           introHasPlayed = true;
           spinTween?.kill();
           caretTween?.kill();
           document.body.style.overflow = prevOverflow;
-          lenis?.start();
+          getLenis()?.start();
           veil?.remove();
           loader?.remove();
           window.dispatchEvent(new Event("page-intro-complete"));
@@ -452,12 +462,19 @@ export function usePageIntro(lenis?: Lenis | null) {
       caretTween?.kill();
       ctx.revert();
       document.body.style.overflow = prevOverflow;
-      lenis?.start();
-      // Leaving home mid-intro — clear overlay lock.
-      // Do NOT dispatch page-intro-complete here: that can re-run
-      // useScrollLines setup while Home is unmounting.
-      veil?.remove();
-      loader?.remove();
+      getLenis()?.start();
+      // Do NOT remove #sun-loader / #page-intro-veil here.
+      // Removing React-owned nodes while PageIntro is still mounted
+      // (e.g. old [lenis] dep change) permanently kills the sun and
+      // can leave the hero stuck at opacity 0.
+      // Reveal hero if we interrupted before onComplete.
+      if (!completed) {
+        if (phrase) gsap.set(phrase, { clearProps: "all" });
+        if (banner) gsap.set(banner, { clearProps: "all" });
+        if (gallery) gsap.set(gallery, { clearProps: "all" });
+        if (badge) gsap.set(badge, { clearProps: "all" });
+        if (nav) gsap.set(nav, { clearProps: "all" });
+      }
     };
-  }, [lenis]);
+  }, []);
 }
