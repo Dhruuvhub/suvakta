@@ -4,6 +4,8 @@ import { useLenis } from "lenis/react";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/sections/Navbar";
 import { LeaderboardCard } from "@/components/ui/leaderboard-card";
+import { useTransitionNavigate } from "@/hooks/useTransitionNavigate";
+import { isPageTransitionRunning } from "@/lib/pageTransition";
 
 const PODIUM = [
   {
@@ -106,8 +108,10 @@ const RANKINGS = [
 
 export const LeaderboardPage = () => {
   const lenis = useLenis();
+  const transitionTo = useTransitionNavigate();
 
   useLayoutEffect(() => {
+    if (isPageTransitionRunning()) return;
     lenis?.resize();
     lenis?.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
@@ -120,6 +124,10 @@ export const LeaderboardPage = () => {
         <div className="mb-6 flex flex-col gap-4 md:mb-8">
           <Link
             to="/"
+            onClick={(event) => {
+              event.preventDefault();
+              transitionTo("/");
+            }}
             className="inline-flex w-fit items-center gap-2 rounded-full border border-suvakta-900 bg-white px-4 py-2 text-sm font-bold shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />

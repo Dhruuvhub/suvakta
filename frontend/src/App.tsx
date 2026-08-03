@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollManager } from "@/components/ScrollManager";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { PageTransitionOverlay } from "@/components/PageTransitionOverlay";
 import { HomePage } from "@/pages/HomePage";
 import { LeaderboardPage } from "@/pages/LeaderboardPage";
 
@@ -9,7 +10,6 @@ function AppRoutes() {
   const { pathname } = useLocation();
 
   return (
-    // Remount page tree on path change so Lenis/GSAP never keep home state
     <div key={pathname} className="min-h-full w-full">
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -28,6 +28,7 @@ export const App = () => {
         <ErrorBoundary>
           <AppRoutes />
         </ErrorBoundary>
+        <PageTransitionOverlay />
       </div>
     </SmoothScroll>
   );

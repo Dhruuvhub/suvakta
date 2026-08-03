@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useLenis } from "lenis/react";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/sections/Navbar/navLinks";
+import { useTransitionNavigate } from "@/hooks/useTransitionNavigate";
 
 const linkClass =
   "relative font-bold tracking-[-0.153846px] leading-[23.0769px] md:tracking-[-0.142222px] md:leading-[21.3333px]";
@@ -13,8 +13,7 @@ function isHashOnlyHomeLink(to: string) {
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const lenis = useLenis();
+  const transitionTo = useTransitionNavigate();
 
   useEffect(() => {
     if (!open) return;
@@ -69,18 +68,8 @@ export function MobileNav() {
                       setOpen(false);
                       if (isHashOnlyHomeLink(to)) return;
                       if (!to.startsWith("/")) return;
-
                       event.preventDefault();
-                      document.body.style.overflow = "";
-                      lenis?.stop();
-                      lenis?.scrollTo(0, { immediate: true });
-                      window.scrollTo(0, 0);
-                      navigate(to);
-                      requestAnimationFrame(() => {
-                        lenis?.resize();
-                        lenis?.scrollTo(0, { immediate: true });
-                        lenis?.start();
-                      });
+                      transitionTo(to);
                     }}
                   >
                     {label}
