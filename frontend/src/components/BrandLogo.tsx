@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const logoClass =
   "inline w-full cursor-pointer object-contain outline-none select-none transition-[transform,filter] duration-150 ease-out " +
   "[filter:drop-shadow(0_4px_0_rgba(0,0,0,0.22))] " +
@@ -9,8 +7,8 @@ const logoClass =
 export const BrandLogo = () => {
   return (
     <div className="pointer-events-none relative flex h-auto w-auto min-w-0 items-center justify-center md:absolute md:left-0 md:top-0 md:h-full md:w-full">
-      <Link
-        to="/"
+      <a
+        href="/"
         aria-label="Suvakta home"
         className="pointer-events-auto flex w-[min(190px,42vw)] items-center justify-center md:w-[172px]"
       >
@@ -20,7 +18,7 @@ export const BrandLogo = () => {
           className={logoClass}
           draggable={false}
         />
-      </Link>
+      </a>
     </div>
   );
 };

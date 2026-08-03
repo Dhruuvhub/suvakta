@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/sections/Navbar";
 import { LeaderboardCard } from "@/components/ui/leaderboard-card";
@@ -108,13 +107,13 @@ export const LeaderboardPage = () => {
       <Navbar />
       <main className="section-container px-4 pb-16 pt-[calc(71px+1.5rem)] md:pt-[calc(66px+2rem)]">
         <div className="mb-6 flex flex-col gap-4 md:mb-8">
-          <Link
-            to="/"
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-suvakta-900 bg-white px-4 py-2 text-sm font-bold shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none"
+          <a
+            href="/"
+            className="relative z-20 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full border border-suvakta-900 bg-white px-4 py-2 text-sm font-bold shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             Back home
-          </Link>
+          </a>
           <div>
             <h1 className="font-sugar_peachy text-[clamp(2rem,8vw,3.25rem)] leading-[1.05]">
               <span className="inline-block rotate-[-2deg] rounded-md border-2 border-suvakta-900 bg-suvakta-600 px-4 py-2 text-white shadow-[rgba(0,0,0,0.2)_0px_4px_0px_0px]">
