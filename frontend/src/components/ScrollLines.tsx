@@ -9,7 +9,10 @@ export const ScrollLines = () => {
   useScrollLines();
 
   return (
-    <div className="pointer-events-none absolute inset-0 hidden h-full min-h-[512.769px] w-full overflow-hidden md:fixed md:block md:h-dvh md:min-h-dvh">
+    <div
+      data-scroll-lines
+      className="pointer-events-none absolute inset-0 hidden h-full min-h-[512.769px] w-full overflow-hidden md:fixed md:block md:h-dvh md:min-h-dvh"
+    >
       <RainbowSides
         side="right"
         className="absolute right-[-48.7131px] top-0 w-[205.749px] md:right-[-67.5556px] md:w-[285.333px]"

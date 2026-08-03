@@ -453,10 +453,11 @@ export function usePageIntro(lenis?: Lenis | null) {
       ctx.revert();
       document.body.style.overflow = prevOverflow;
       lenis?.start();
-      // Leaving home mid-intro (e.g. to /leaderboard) — clear overlay lock
+      // Leaving home mid-intro — clear overlay, but do NOT fire
+      // page-intro-complete (that would re-init scroll lines during unmount).
       veil?.remove();
       loader?.remove();
-      window.dispatchEvent(new Event("page-intro-complete"));
+      introHasPlayed = true;
     };
   }, [lenis]);
 }
