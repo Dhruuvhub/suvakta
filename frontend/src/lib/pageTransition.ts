@@ -13,7 +13,15 @@ type RunTransitionArgs = {
 
 let running = false;
 
-/** Accordion-style iris wipe — shared by nav / back links */
+/** Height scale: 1 at edges → ~0.38 at center (accordion bellows pinch) */
+function pinchScale(index: number, count: number) {
+  const mid = (count - 1) / 2;
+  const t = Math.abs(index - mid) / mid; // 0 center → 1 edge
+  // Smooth bowl curve (matches Accordion silhouette)
+  return 0.38 + 0.62 * (t * t * (3 - 2 * t));
+}
+
+/** Clean black/white bellows wipe — Accordion mid-frame look */
 export function runPageTransition({
   navigate,
   to,
@@ -38,22 +46,20 @@ export function runPageTransition({
   document.body.style.overflow = "hidden";
   lenis?.stop();
 
-  const overlay = wrap.querySelector<HTMLElement>("[data-pt-overlay]");
-  const inner = wrap.querySelector<HTMLElement>("[data-pt-inner]");
-  const columns = gsap.utils.toArray<HTMLElement>(
-    wrap.querySelectorAll("[data-pt-col]"),
+  const bars = gsap.utils.toArray<HTMLElement>(
+    wrap.querySelectorAll("[data-pt-bar]"),
   );
-  const curveTop = wrap.querySelector<HTMLElement>("[data-pt-curve-top]");
-  const curveBot = wrap.querySelector<HTMLElement>("[data-pt-curve-bot]");
-  const mark = wrap.querySelector<HTMLElement>("[data-pt-mark]");
   const pluses = gsap.utils.toArray<HTMLElement>(
     wrap.querySelectorAll("[data-pt-plus]"),
   );
+  const ticks = wrap.querySelector<HTMLElement>("[data-pt-ticks]");
+  const bellows = wrap.querySelector<HTMLElement>("[data-pt-bellows]");
 
-  const duration = 0.95;
+  const count = bars.length;
+  const duration = 0.85;
   const ease = "power4.inOut";
-  const shiftVw = direction === "to-leaderboard" ? -4 : 4;
-  const isMobile = window.innerWidth < 768;
+  // Slight lateral slot shift by destination (Accordion namespace feel)
+  const shiftX = direction === "to-leaderboard" ? "-3vw" : "3vw";
 
   return new Promise((resolve) => {
     const finish = () => {
@@ -61,135 +67,100 @@ export function runPageTransition({
       document.documentElement.classList.remove("is-page-transitioning");
       document.body.style.overflow = "";
       gsap.set(wrap, { display: "none", pointerEvents: "none" });
-      gsap.set([inner, columns, curveTop, curveBot, mark, pluses, overlay], {
-        clearProps: "all",
-      });
+      gsap.set([bars, pluses, ticks, bellows], { clearProps: "all" });
       lenis?.start();
       lenis?.resize();
       onDone?.();
       resolve();
     };
 
-    const tl = gsap.timeline({ defaults: { ease, duration } });
+    const tl = gsap.timeline({ defaults: { ease } });
 
-    gsap.set(wrap, { display: "flex", pointerEvents: "auto" });
-    gsap.set(overlay, { autoAlpha: 1 });
-    gsap.set(inner, {
-      width: "100vw",
-      height: "100vh",
-      clipPath: "inset(0vh 0vw round 0px)",
+    // Show shell
+    gsap.set(wrap, {
+      display: "flex",
+      pointerEvents: "auto",
+      autoAlpha: 1,
+      backgroundColor: "#000",
     });
-    gsap.set(columns, { width: "6vw", height: "100vh", x: "0vw", opacity: 1 });
-    gsap.set(curveTop, { width: "250vh", y: "-125vh", opacity: 1 });
-    gsap.set(curveBot, { width: "250vh", y: "125vh", opacity: 1 });
-    gsap.set(mark, { yPercent: -200, opacity: 1 });
-    gsap.set(pluses, { opacity: 1, xPercent: 0, rotate: 0 });
+    gsap.set(pluses, { autoAlpha: 0, scale: 0.6 });
+    gsap.set(ticks, { autoAlpha: 0, y: -8 });
+    gsap.set(bellows, { x: "0vw", scaleX: 1 });
 
-    // ——— Leave: iris closes ———
-    tl.to(
-      inner,
-      { clipPath: "inset(22.5vh 48.5vw round 0px)", width: "60vw" },
-      0,
-    );
-    tl.to(columns, { width: "3vw", height: "45vh" }, 0);
-    tl.to(
-      curveTop,
-      {
-        width: isMobile ? "100vh" : "175vh",
-        y: isMobile ? "-10vh" : "-50vh",
-        duration: duration + 0.08,
-      },
-      0,
-    );
-    tl.to(
-      curveBot,
-      {
-        width: isMobile ? "100vh" : "175vh",
-        y: isMobile ? "10vh" : "50vh",
-        duration: duration + 0.08,
-      },
-      0,
-    );
-    tl.fromTo(
-      mark,
-      { yPercent: -200 },
-      {
-        yPercent: 0,
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: duration / 1.35,
-        duration: duration / 1.35,
-      },
-      0.12,
-    );
-    tl.fromTo(
-      pluses.filter((_, i) => i % 2 === 0),
-      { xPercent: -180, rotate: -90 },
-      {
-        xPercent: 0,
-        rotate: 0,
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: duration / 1.35,
-        duration: duration / 1.35,
-      },
-      0.12,
-    );
-    tl.fromTo(
-      pluses.filter((_, i) => i % 2 === 1),
-      { xPercent: 180, rotate: 90 },
-      {
-        xPercent: 0,
-        rotate: 0,
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: duration / 1.35,
-        duration: duration / 1.35,
-      },
-      0.12,
-    );
-    tl.to(columns, { x: `${shiftVw}vw`, duration: duration / 1.25 }, duration * 0.5);
+    // Bars start full-bleed (cover), then pinch
+    bars.forEach((bar) => {
+      gsap.set(bar, {
+        scaleY: 1.05,
+        transformOrigin: "50% 50%",
+        autoAlpha: 1,
+      });
+    });
 
-    // Swap route once sealed
+    // ——— Close: full bars → bellows pinch ———
+    tl.to(
+      pluses,
+      { autoAlpha: 1, scale: 1, duration: 0.35, stagger: 0.04, ease: "power3.out" },
+      0,
+    );
+    tl.to(ticks, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+
+    bars.forEach((bar, i) => {
+      tl.to(
+        bar,
+        {
+          scaleY: pinchScale(i, count),
+          duration,
+        },
+        0.08,
+      );
+    });
+
+    tl.to(
+      bellows,
+      { scaleX: 0.92, x: shiftX, duration: duration * 0.9 },
+      0.12,
+    );
+
+    // Route swap at sealed bellows
     tl.add(() => {
       navigate(to);
       window.scrollTo(0, 0);
       lenis?.scrollTo(0, { immediate: true });
     });
 
-    // Brief hold on the slit
-    tl.to({}, { duration: 0.12 });
+    tl.to({}, { duration: 0.14 });
 
-    // ——— Enter: iris opens ———
+    // ——— Open: pinch → full cover, then fade shell ———
     tl.addLabel("open");
     tl.to(
-      inner,
+      bellows,
+      { scaleX: 1.15, x: "0vw", duration: duration * 0.95 },
+      "open",
+    );
+    bars.forEach((bar) => {
+      tl.to(
+        bar,
+        {
+          scaleY: 1.2,
+          duration: duration * 0.95,
+        },
+        "open",
+      );
+    });
+    tl.to(
+      [pluses, ticks],
+      { autoAlpha: 0, duration: 0.25, ease: "power2.in" },
+      "open+=0.45",
+    );
+    tl.to(
+      wrap,
       {
-        clipPath: "inset(0vh 0vw round 0px)",
-        width: "100vw",
+        autoAlpha: 0,
+        duration: 0.35,
+        ease: "power2.inOut",
       },
-      "open",
+      "open+=0.55",
     );
-    tl.to(
-      columns,
-      {
-        width: "12vw",
-        height: "100vh",
-        x: "0vw",
-      },
-      "open",
-    );
-    tl.to(
-      curveTop,
-      { width: "250vh", y: "-125vh", duration: duration + 0.12 },
-      "open",
-    );
-    tl.to(
-      curveBot,
-      { width: "250vh", y: "125vh", duration: duration + 0.12 },
-      "open",
-    );
-    tl.to(overlay, { autoAlpha: 0, duration: duration * 0.55 }, "open+=0.2");
     tl.add(finish);
   });
 }
