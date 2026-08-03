@@ -162,19 +162,6 @@ export function usePageIntro(lenis?: Lenis | null) {
     if (reduced || introHasPlayed) {
       veil?.remove();
       loader?.remove();
-      // SPA return to home skips the intro timeline — force final visible state
-      // so the hero never stays stuck at opacity 0 / nav off-screen.
-      gsap.set('[data-intro="nav"]', { yPercent: 0, opacity: 1, clearProps: "transform" });
-      gsap.set('[data-intro="badge"]', { autoAlpha: 1, clearProps: "transform" });
-      gsap.set('[data-intro="phrase"]', { opacity: 1, y: 0, scale: 1, clearProps: "transform" });
-      gsap.set('[data-intro="banner"]', {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        rotate: -3.5,
-        clearProps: "transform",
-      });
-      gsap.set('[data-intro="gallery"]', { opacity: 1, y: 0, clearProps: "transform" });
       window.dispatchEvent(new Event("page-intro-complete"));
       return;
     }
@@ -466,11 +453,11 @@ export function usePageIntro(lenis?: Lenis | null) {
       ctx.revert();
       document.body.style.overflow = prevOverflow;
       lenis?.start();
-      // Leaving home mid-intro — clear overlay, but do NOT fire
-      // page-intro-complete (that would re-init scroll lines during unmount).
+      // Leaving home mid-intro — clear overlay lock.
+      // Do NOT dispatch page-intro-complete here: that can re-run
+      // useScrollLines setup while Home is unmounting.
       veil?.remove();
       loader?.remove();
-      introHasPlayed = true;
     };
   }, [lenis]);
 }

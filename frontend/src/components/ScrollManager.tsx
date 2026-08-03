@@ -1,58 +1,64 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLenis } from "lenis/react";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Route transitions: reset scroll/locks. Destructive cleanup (kill triggers /
- * remove fixed rainbow strips) only runs when LEAVING home — never on `/`,
- * or the home strips get deleted right after React mounts them.
+ * On every route change:
+ * - clear intro overlays / body locks
+ * - kill home ScrollTriggers so they can't pin stale DOM
+ * - reset Lenis + window scroll (fixes blank leaderboard after SPA nav)
  */
 export function ScrollManager() {
   const { pathname, hash } = useLocation();
   const lenis = useLenis();
 
   useLayoutEffect(() => {
-    const onHome = pathname === "/";
-
-    if (!onHome) {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      ScrollTrigger.clearScrollMemory?.();
-      document
-        .querySelectorAll("[data-scroll-lines]")
-        .forEach((el) => el.remove());
-    }
-
-    // Clear intro / body locks on every route
     document.body.style.overflow = "";
-    document.body.style.height = "";
-    document.body.style.position = "";
-    document.documentElement.style.overflow = "";
-    document.documentElement.style.height = "";
     document.getElementById("page-intro-veil")?.remove();
     document.getElementById("sun-loader")?.remove();
 
-    lenis?.start();
-    lenis?.resize();
-    lenis?.scrollTo(0, { immediate: true });
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    // Drop triggers from the page we just left (home strips / scrub timelines)
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
     const id = hash.replace(/^#/, "");
-    if (id) {
+
+    const goTop = () => {
+      lenis?.resize();
+      lenis?.scrollTo(0, { immediate: true });
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      ScrollTrigger.refresh();
+    };
+
+    if (id && pathname === "/") {
+      // Hash links on home — wait a frame for the section to exist
+      goTop();
       const frame = requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-        ScrollTrigger.refresh();
+        const el = document.getElementById(id);
+        if (el) {
+          if (lenis) {
+            lenis.scrollTo(el, { immediate: false, offset: -80 });
+          } else {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
       });
       return () => cancelAnimationFrame(frame);
     }
 
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    goTop();
+    // Second pass after layout so Lenis picks up the new page height
+    const frame = requestAnimationFrame(() => {
+      lenis?.resize();
+      lenis?.scrollTo(0, { immediate: true });
+      ScrollTrigger.refresh();
+    });
+    return () => cancelAnimationFrame(frame);
   }, [pathname, hash, lenis]);
 
   return null;
