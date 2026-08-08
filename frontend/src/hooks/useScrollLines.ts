@@ -159,10 +159,6 @@ export function useScrollLines() {
       window.removeEventListener("page-intro-complete", onIntroComplete);
       if (resizeHandler) window.removeEventListener("resize", resizeHandler);
       ctx?.revert();
-      // Extra safety: kill any triggers still attached to this range
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === range) t.kill();
-      });
     };
   }, []);
 }

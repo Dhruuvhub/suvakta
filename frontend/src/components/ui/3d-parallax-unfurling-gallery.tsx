@@ -137,7 +137,7 @@ export default function ParallaxUnfurlingGallery() {
               style={{ perspective: "1000px" }}
             >
               <div className="pointer-events-none absolute inset-0 z-20 shadow-[inset_0_100px_150px_-50px_rgba(0,0,0,1),inset_0_-100px_150px_-50px_rgba(0,0,0,1)]" />
-              <div className="pointer-events-none absolute inset-0 z-20 shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]" />
+              <div className="pointer-events-none absolute inset-0 z-20 shadow-[inset_40px_0_80px_-20px_rgba(0,0,0,1),inset_-40px_0_80px_-20px_rgba(0,0,0,1)] md:shadow-[inset_150px_0_150px_-50px_rgba(0,0,0,1),inset_-150px_0_150px_-50px_rgba(0,0,0,1)]" />
 
               <motion.div
                 style={{

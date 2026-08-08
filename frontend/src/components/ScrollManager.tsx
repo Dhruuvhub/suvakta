@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { useLenis } from "lenis/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { isPageTransitionRunning } from "@/lib/pageTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,12 +18,6 @@ export function ScrollManager() {
   const prevPathRef = useRef(pathname);
 
   useLayoutEffect(() => {
-    // Iris wipe owns scroll/Lenis while active
-    if (isPageTransitionRunning()) {
-      prevPathRef.current = pathname;
-      return;
-    }
-
     const prevPath = prevPathRef.current;
     const leftHome = prevPath === "/" && pathname !== "/";
     prevPathRef.current = pathname;

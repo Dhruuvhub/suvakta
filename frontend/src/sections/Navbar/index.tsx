@@ -1,7 +1,7 @@
 import { NavLinks } from "@/sections/Navbar/components/NavLinks";
 import { MobileNav } from "@/sections/Navbar/components/MobileNav";
 import { BrandLogo } from "@/components/BrandLogo";
-import { TicketButton } from "@/components/TicketButton";
+import { LoginButton } from "@/components/LoginButton";
 
 export const Navbar = () => {
   return (
@@ -10,15 +10,17 @@ export const Navbar = () => {
         data-intro="nav"
         className="pointer-events-auto h-[71.1538px] w-full border-b border-suvakta-900 bg-suvakta-50 will-change-transform md:h-[65.7778px]"
       >
-        <div className="section-container section-copy">
-          <div className="relative flex h-[71.1538px] items-center justify-between gap-3 md:h-[65.7778px]">
-            <div className="flex min-w-0 flex-1 items-center gap-2 md:flex-none">
+        <div className="section-container section-copy relative">
+          <div className="relative flex h-[71.1538px] items-center md:h-[65.7778px]">
+            <div className="relative z-10 flex items-center gap-2">
               <MobileNav />
               <NavLinks />
             </div>
+
             <BrandLogo />
-            <div className="flex shrink-0 items-center">
-              <TicketButton />
+
+            <div className="absolute right-3 top-1/2 z-10 -translate-y-1/2 md:right-6 lg:right-8">
+              <LoginButton />
             </div>
           </div>
         </div>

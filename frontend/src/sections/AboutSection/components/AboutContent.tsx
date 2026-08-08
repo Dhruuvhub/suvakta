@@ -23,7 +23,7 @@ export const AboutContent = () => {
       <button
         type="button"
         onClick={() => setRecapOpen(true)}
-        className="relative flex h-11 min-h-11 items-center justify-center rounded-[153.846px] border border-suvakta-900 bg-white px-6 text-suvakta-900 shadow-[rgba(0,0,0,0.15)_0px_3.84615px_0px_0px] hover:shadow-[rgba(0,0,0,0.5)_0px_0px_0px_0px] md:h-[42.6667px] md:rounded-[142.222px] md:shadow-[rgba(0,0,0,0.15)_0px_3.55556px_0px_0px]"
+        className="relative mt-4 flex h-11 min-h-11 items-center justify-center rounded-[153.846px] border border-suvakta-900 bg-white px-6 text-suvakta-900 shadow-[rgba(0,0,0,0.15)_0px_3.84615px_0px_0px] hover:shadow-[rgba(0,0,0,0.5)_0px_0px_0px_0px] md:mt-6 md:h-[42.6667px] md:rounded-[142.222px] md:shadow-[rgba(0,0,0,0.15)_0px_3.55556px_0px_0px]"
       >
         <img
           src="https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-26.svg"

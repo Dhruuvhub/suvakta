@@ -1,5 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
-import { useTransitionNavigate } from "@/hooks/useTransitionNavigate";
+import { Link } from "react-router-dom";
 
 const logoClass =
   "inline w-full cursor-pointer object-contain outline-none select-none transition-[transform,filter] duration-150 ease-out " +
@@ -8,20 +7,12 @@ const logoClass =
   "active:translate-y-[3px] active:[filter:drop-shadow(0_0px_0_rgba(0,0,0,0.55))]";
 
 export const BrandLogo = () => {
-  const { pathname } = useLocation();
-  const transitionTo = useTransitionNavigate();
-
   return (
-    <div className="pointer-events-none relative flex h-auto w-auto min-w-0 items-center justify-center md:absolute md:left-0 md:top-0 md:h-full md:w-full">
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
       <Link
         to="/"
         aria-label="Suvakta home"
         className="pointer-events-auto flex w-[min(190px,42vw)] items-center justify-center md:w-[172px]"
-        onClick={(event) => {
-          if (pathname === "/") return;
-          event.preventDefault();
-          transitionTo("/");
-        }}
       >
         <img
           src="/suvakta-wordmark.png"

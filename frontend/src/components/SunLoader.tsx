@@ -8,8 +8,7 @@ type SunLoaderProps = {
 
 /**
  * Outer node is the GSAP fly target.
- * Viewport center sits in the gap between sun and message box
- * (sun to the left of center, bubble grows to the right).
+ * Inner layout keeps the sun centered; the bubble only grows to the right.
  */
 export const SunLoader = forwardRef<HTMLDivElement, SunLoaderProps>(
   function SunLoader({ className }, ref) {
@@ -18,21 +17,17 @@ export const SunLoader = forwardRef<HTMLDivElement, SunLoaderProps>(
         ref={ref}
         id="sun-loader"
         data-sun-loader=""
-        className={`pointer-events-none fixed left-1/2 top-[46%] z-[920] -translate-y-1/2 will-change-transform ${className ?? ""}`}
+        className={`pointer-events-none fixed left-1/2 top-[46%] z-[920] will-change-transform ${className ?? ""}`}
         aria-hidden="true"
       >
-        <div className="relative flex items-center">
-          {/* Half of gap-3 / gap-4 so the gap straddles the center line */}
-          <div
-            data-sun-anchor=""
-            className="absolute right-full mr-1.5 shrink-0 md:mr-2"
-          >
+        <div className="flex -translate-x-[36px] -translate-y-1/2 items-center gap-3 md:-translate-x-[44px] md:gap-4">
+          <div data-sun-anchor="" className="shrink-0">
             <SmilingSun className="h-[72px] w-[72px] md:h-[88px] md:w-[88px]" />
           </div>
 
           <SpeechBubble
             data-sun-bubble=""
-            className="absolute left-full ml-1.5 overflow-hidden will-change-[width] md:ml-2"
+            className="overflow-hidden will-change-[width]"
           >
             <p className="relative m-0 whitespace-nowrap font-quicksand text-[13px] font-bold leading-none tracking-tight text-white md:text-[14px]">
               <span data-sun-text="" />

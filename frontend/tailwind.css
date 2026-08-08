@@ -125,11 +125,136 @@
   .touch-target {
     @apply inline-flex min-h-11 min-w-11 items-center justify-center;
   }
-}
 
-/* Accordion-style page wipe — lock interaction while iris runs */
-html.is-page-transitioning,
-html.is-page-transitioning body {
-  overflow: hidden !important;
-  cursor: wait;
+  /* ——— Sterling Gate kinetic mobile menu (slides in from the LEFT) ——— */
+  .sg-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    display: none;
+  }
+
+  .sg-nav .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(19, 19, 19, 0.45);
+    cursor: pointer;
+  }
+
+  .sg-nav .menu-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(86vw, 420px);
+    overflow: hidden;
+    display: flex;
+    will-change: transform;
+  }
+
+  .sg-nav .menu-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .sg-nav .backdrop-layer {
+    position: absolute;
+    inset: 0;
+    background: #12333b;
+    will-change: transform;
+  }
+
+  .sg-nav .backdrop-layer.first {
+    background: #a3d8dd;
+  }
+
+  .sg-nav .backdrop-layer.second {
+    background: #3f6b74;
+  }
+
+  .sg-nav .ambient-background-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .sg-nav .bg-shape {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .sg-nav .bg-shape.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sg-nav .menu-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(71px + 1.5rem) 1.75rem 2.5rem;
+  }
+
+  .sg-nav .menu-list {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sg-nav .menu-list-item {
+    overflow: hidden;
+  }
+
+  .sg-nav .nav-link {
+    position: relative;
+    display: block;
+    padding: 0.6rem 0.75rem;
+    text-decoration: none;
+    will-change: transform;
+  }
+
+  .sg-nav .nav-link-text {
+    margin: 0;
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+    line-height: 1.15;
+    color: #eef6f6;
+    letter-spacing: 0.01em;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+    transform-origin: left center;
+  }
+
+  .sg-nav .nav-link:hover .nav-link-text,
+  .sg-nav .nav-link:focus-visible .nav-link-text,
+  .sg-nav .nav-link:active .nav-link-text {
+    transform: translateX(15px) scale(1.05);
+    color: #ffffff;
+  }
+
+  .sg-nav .nav-link-hover-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .sg-nav .nav-link:hover .nav-link-hover-bg,
+  .sg-nav .nav-link:focus-visible .nav-link-hover-bg,
+  .sg-nav .nav-link:active .nav-link-hover-bg {
+    opacity: 1;
+  }
 }

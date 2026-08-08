@@ -168,8 +168,7 @@ export function usePageIntro(lenis?: Lenis | null) {
     const loader = document.getElementById("sun-loader");
 
     if (reduced || introHasPlayed) {
-      veil?.remove();
-      loader?.remove();
+      // Don't remove DOM nodes manually, let React handle it via state
       window.dispatchEvent(new Event("page-intro-complete"));
       return;
     }
@@ -240,8 +239,7 @@ export function usePageIntro(lenis?: Lenis | null) {
           caretTween?.kill();
           document.body.style.overflow = prevOverflow;
           getLenis()?.start();
-          veil?.remove();
-          loader?.remove();
+          // Don't remove DOM nodes manually, let React handle it via state
           window.dispatchEvent(new Event("page-intro-complete"));
           ScrollTrigger.refresh();
         },
