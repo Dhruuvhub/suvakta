@@ -22,6 +22,11 @@ const DATE_MSG = "9&10 October 2026 , Miranda House";
 
 let introHasPlayed = false;
 
+/** True after the home intro has finished once this session (survives route remounts). */
+export function hasPageIntroPlayed() {
+  return introHasPlayed;
+}
+
 /** One-shot measure — never call inside rAF / onUpdate */
 function measureBubbleWidth(
   bubble: HTMLElement,

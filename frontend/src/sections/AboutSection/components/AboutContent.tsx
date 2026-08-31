@@ -6,18 +6,15 @@ export const AboutContent = () => {
 
   return (
     <div className="section-copy relative z-10 flex w-full max-w-[min(100%,19.4rem)] flex-col items-center gap-y-[clamp(1.25rem,5vw,1.9rem)] px-2 pt-4 text-center md:max-w-[520px] md:gap-y-[28.4444px] md:pt-[14.2222px]">
-      <h2 className="flex flex-col items-center font-sugar_peachy text-[clamp(1.75rem,8vw,2.625rem)] leading-[1.1] md:block md:text-[57.7778px] md:leading-[52px]">
-        The No.1 Fest for:{" "}
-        <br className="md:hidden" />
-        <span className="relative mt-2 flex max-w-[min(100%,18rem)] rotate-[-3deg] rounded-[5.28846px] border border-suvakta-900 bg-suvakta-500 px-[10.5769px] py-2 text-white shadow-[rgba(255,255,255,0.15)_0px_3.17308px_0px_0px] md:mt-0 md:inline md:max-w-none md:rotate-[-0.9999993263990709deg] md:px-[13.7222px] md:py-[8.23333px] md:text-[54.8889px] md:leading-[49.4px] md:shadow-[rgba(255,255,255,0.15)_0px_4.11667px_0px_0px] md:rounded-[3.43056px]">
-          Web Designers &amp; Devs
+      <h2 className="flex flex-col items-center gap-3 text-center font-sugar_peachy text-[clamp(1.4rem,5vw,2rem)] leading-[1.2] md:gap-4 md:text-[2.2rem] md:leading-[1.15]">
+        <span>Miranda&apos;s annual flagship conference is back</span>
+        <span className="relative rotate-[-2deg] rounded-[5px] border border-suvakta-900 bg-suvakta-500 px-4 py-2 text-white shadow-[rgba(255,255,255,0.15)_0px_3px_0px_0px] text-[clamp(1.6rem,6vw,2.4rem)] leading-none md:rotate-[-1deg] md:px-5 md:py-3 md:text-[2.8rem]">
+          SAMANJASYA
         </span>
       </h2>
       <div className="flex w-full max-w-[24rem] flex-col items-center justify-center md:max-w-[355.556px]">
         <p>
-          It&apos;s like a conference, but it&apos;s outside, with steel drums, pints
-          and way cooler vibes. Listen to web design &amp; dev talks whilst
-          having a belting time.
+          Miranda House&apos;s premier Model United Nations conference, where delegates debate, deliberate, and drive change.
         </p>
       </div>
       <button

@@ -5,68 +5,42 @@ export const FaqList = () => {
     <div className="section-copy order-2 w-full min-w-0 md:order-none md:w-[min(540.444px,100%)]">
       <ul className="flex list-none flex-col gap-y-[15.3846px] pl-0 md:gap-y-[14.2222px]">
         <FaqItem
-          question="Can I have a discount?"
+          question="What is Suvakta? How is it different from Samanjasya?"
           answer={
             <p className="text-[clamp(0.8125rem,2.5vw,0.84rem)] leading-relaxed md:text-[12.4444px] md:leading-[18.6667px]">
-              FlowFest is a <strong>non-profit</strong> event, and our goal is to
-              make FlowFest as affordable as we possibly can whilst delivering a
-              quality day that you&apos;ll never forget. Due to last year&apos;s
-              feedback we are investing more in comfort and quality this year. To
-              keep ticket prices as low as we can for everyone, we are unable to
-              offer discounts and appreciate your support for this community
-              event.
+              <strong>Suvakta</strong> is Miranda House’s MUN Club, which organises MUN and Youth Parliament conferences. <strong>Samanjasya</strong> is Suvakta’s flagship MUN conference, open to everyone, <strong>irrespective</strong> of their association with the club. While participation in Samanjasya is open to all, contributing to the planning and volunteering for Suvakta’s events is an opportunity reserved for its members.
             </p>
           }
         />
         <FaqItem
-          question="How do I get there?"
+          question="I don't have any experience in MUN. Am I still eligible to join ?"
           answer={
             <p className="text-[clamp(0.8125rem,2.5vw,0.84rem)] leading-relaxed md:text-[12.4444px] md:leading-[18.6667px]">
-              FlowFest is hosted in <strong>Media City Gardens</strong> (you&apos;ll
-              find it by searching the Blue Peter Garden on Google Maps), which is
-              an outdoor venue. It&apos;s directly in front of Media City tram
-              stop, which is a great way to get to the venue if you&apos;re
-              travelling from the city centre or other parts of Manchester. There
-              is also a multi-story car park just round the corner for those
-              driving.
+              <strong>Absolutely</strong>. No prior MUN experience is required to join Suvakta. Our training sessions take you from the basics to the actual conference environment, helping you understand the process, build confidence, and find your voice. All you need is the willingness to learn.
             </p>
           }
         />
         <FaqItem
-          question="Is there food included?"
+          question="How many MUNs or conferences do I need to attend as a part of the club ?"
           answer={
             <p className="text-[clamp(0.8125rem,2.5vw,0.84rem)] leading-relaxed md:text-[12.4444px] md:leading-[18.6667px]">
-              Yes, a banging <strong>lunch</strong> courtesy of Kargo on the Docks
-              is <strong>included</strong> in your ticket, as well as{" "}
-              <strong>drinks</strong> tokens.
+              Members are expected to attend <strong>five MUNs</strong> in total - <strong>four official delegations and one unofficial MUN.</strong> Of the four official delegations, <strong>one</strong> may be a Suvakta-organised conference, either <em>Samanjasya</em> or <em>Miranda House Youth Summit (MHYS)</em>. This ensures that every member gets consistent exposure to both external conferences and the club's own MUN circuit. Members are expected to fulfill the 65 per cent attendance criteria to be eligible for the certificate.
             </p>
           }
         />
         <FaqItem
-          question="What should I bring?"
+          question="I am a beginner, will I get some sort of training? Or how will I learn to do MUNs as a fresher ?"
           answer={
             <p className="text-[clamp(0.8125rem,2.5vw,0.84rem)] leading-relaxed md:text-[12.4444px] md:leading-[18.6667px]">
-              Good vibes and <strong>layers</strong>. This is an all day{" "}
-              <strong>outdoor</strong> event in <strong>Manchester</strong>, so
-              check the weather closer to the time and{" "}
-              <strong>dress accordingly.</strong> Also, we&apos;ve taken your
-              feedback onboard and there are no hands on workshops, so{" "}
-              <strong>no need</strong> to bring a <strong>laptop</strong>.
+              <strong>Yes</strong>, you will be provided with training sessions.The training schedule will be conducted on a recurring basis, with offline training sessions every <strong>Saturday</strong>, followed by <strong>online training sessions every Sunday.</strong> Additionally, committee procedure mock simulations will be conducted every alternate <strong>Monday</strong> to facilitate ROP clearance.
             </p>
           }
         />
         <FaqItem
-          question="Will there be an afterparty?"
+          question="What's the criteria to become a member, volunteer or head ?"
           answer={
             <p className="text-[clamp(0.8125rem,2.5vw,0.84rem)] leading-relaxed md:text-[12.4444px] md:leading-[18.6667px]">
-              As it was last year, there isn&apos;t an <strong>official</strong> or
-              planned afterparty, but FlowFest folks know the party{" "}
-              <strong>never stops.</strong> We usually have the venue until 6 or
-              7pm, and last year we headed to Kargo Food Market to get some{" "}
-              <strong>dinner</strong> and headed into town for{" "}
-              <strong>karaoke</strong>. After party <strong>planners</strong>{" "}
-              welcome, FlowFest is on a Friday after all so it would be rude not to
-              get a bit <strong>lairy</strong>.
+              Volunteer and member selections will be conducted through <strong>forms</strong>, followed by <strong>shortlisting</strong> and an <strong>interview round</strong>. For Head positions, candidates must demonstrate consistent attendance, active participation, commitment, and involvement, followed by the <strong>application</strong> and <strong>interview process.</strong> Final selections will be based on the candidate’s responses, performance, and <strong>suitability</strong> for the respective role.
             </p>
           }
         />

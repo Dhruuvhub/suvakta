@@ -1,20 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { useLenis } from "lenis/react";
-import { usePageIntro } from "@/hooks/usePageIntro";
+import { hasPageIntroPlayed, usePageIntro } from "@/hooks/usePageIntro";
 import { SunLoader } from "@/components/SunLoader";
 
 /** Mounts the page-load intro veil + centered sun loader. */
 export function PageIntro() {
   const lenis = useLenis();
-  const [isComplete, setIsComplete] = useState(false);
-  
-  usePageIntro(lenis);
+  // Skip the veil on remounts (e.g. back from leaderboard) — the complete
+  // event can fire in a layout effect before a useEffect listener attaches.
+  const [isComplete, setIsComplete] = useState(() => {
+    if (typeof window === "undefined") return false;
+    if (hasPageIntroPlayed()) return true;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const onComplete = () => setIsComplete(true);
     window.addEventListener("page-intro-complete", onComplete);
+
+    // Cover the race if the skip path already fired before this subscribed.
+    if (hasPageIntroPlayed()) setIsComplete(true);
+
     return () => window.removeEventListener("page-intro-complete", onComplete);
   }, []);
+
+  usePageIntro(lenis);
 
   if (isComplete) return null;
 

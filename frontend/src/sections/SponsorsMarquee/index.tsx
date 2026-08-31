@@ -1,14 +1,6 @@
 import { SponsorGroup } from "@/sections/SponsorsMarquee/components/SponsorGroup";
 
-const sponsorProps = {
-  label: "Sponsored by",
-  firstSponsorHref: "https://www.osmo.supply/",
-  firstSponsorImageSrc: "https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-23.svg",
-  firstSponsorImageAlt: "Osmo",
-  secondSponsorHref: "https://webflow.com/",
-  secondSponsorImageSrc: "https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-24.svg",
-  secondSponsorImageAlt: "Webflow",
-} as const;
+const MARQUEE_ITEMS = Array(8).fill("SUVAKTA - MUN CLUB");
 
 export const SponsorsMarquee = () => {
   return (
@@ -16,12 +8,14 @@ export const SponsorsMarquee = () => {
       <div className="flex h-full w-max animate-marquee items-center will-change-transform motion-reduce:animate-none">
         {[0, 1].map((copy) => (
           <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
-            <SponsorGroup {...sponsorProps} />
-            <SponsorGroup {...sponsorProps} />
-            <SponsorGroup {...sponsorProps} />
+            {MARQUEE_ITEMS.map((text, idx) => (
+              <SponsorGroup key={`${copy}-${idx}`} text={text} />
+            ))}
           </div>
         ))}
       </div>
     </section>
   );
 };
+
+

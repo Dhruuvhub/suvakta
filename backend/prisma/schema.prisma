@@ -1,0 +1,57 @@
+// Suvakta Prisma schema
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// Registered account used for login / leaderboard access
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  name         String?
+  avatarUrl    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  rankings LeaderboardRanking[]
+}
+
+/// A leaderboard period (e.g. "Week of May 1")
+model LeaderboardRun {
+  id        String   @id @default(cuid())
+  label     String
+  fromDate  DateTime
+  toDate    DateTime
+  createdAt DateTime @default(now())
+
+  rankings LeaderboardRanking[]
+}
+
+/// One user's placement on a given run
+model LeaderboardRanking {
+  id        String  @id @default(cuid())
+  rank      Int
+  value     Int
+  byline    String?
+  displayed Boolean @default(true)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  runId String
+  run   LeaderboardRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([runId, userId])
+  @@unique([runId, rank])
+  @@index([runId, rank])
+}

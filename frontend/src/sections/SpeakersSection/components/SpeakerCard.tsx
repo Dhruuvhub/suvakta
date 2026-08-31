@@ -20,7 +20,10 @@ export const SpeakerCard = (props: SpeakerCardProps) => {
           <div className="absolute left-full top-0 z-[1] h-[17.3077px] w-[17.3077px] -translate-x-1/2 -translate-y-1/2 border border-suvakta-900 bg-white md:h-4 md:w-4" />
           <div className="absolute left-0 top-full z-[1] h-[17.3077px] w-[17.3077px] -translate-x-1/2 -translate-y-1/2 border border-suvakta-900 bg-white md:h-4 md:w-4" />
           <div className="absolute left-full top-full z-[1] h-[17.3077px] w-[17.3077px] -translate-x-1/2 -translate-y-1/2 border border-suvakta-900 bg-white md:h-4 md:w-4" />
-          <div className="relative overflow-hidden border border-suvakta-900 bg-white shadow-[rgba(0,0,0,0.15)_5.76923px_5.76923px_0px_0px] md:shadow-[rgba(0,0,0,0.15)_5.33333px_5.33333px_0px_0px]">
+          <div
+            className="relative overflow-hidden border border-suvakta-900 bg-white shadow-[rgba(0,0,0,0.15)_5.76923px_5.76923px_0px_0px] md:shadow-[rgba(0,0,0,0.15)_5.33333px_5.33333px_0px_0px]"
+            style={{ cursor: "url('https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-28.svg'), pointer" }}
+          >
             <div className="pt-[112.5%]" />
             <img
               src={props.imageUrl}
@@ -28,13 +31,8 @@ export const SpeakerCard = (props: SpeakerCardProps) => {
               className="pointer-events-none absolute left-0 top-0 h-full w-full max-w-full object-cover"
             />
           </div>
-          <div className="absolute inset-[15.3846px] flex flex-col items-center justify-end md:inset-[14.2222px]">
-            <div className="pointer-events-none relative z-[5] flex h-[34.6154px] items-center justify-center rounded-[19.2308px] border border-solid bg-suvakta-600 px-[11.5385px] text-white md:h-8 md:px-[10.6667px] md:rounded-[17.7778px]">
-              <img
-                src="https://c.animaapp.com/mrxuckkzwKTRkk/assets/icon-28.svg"
-                alt=""
-                className="absolute left-0 top-0 w-[21.1538px] -translate-x-3/4 -translate-y-3/4 md:w-[19.5556px]"
-              />
+          <div className="pointer-events-none absolute inset-[15.3846px] flex flex-col items-center justify-end md:inset-[14.2222px]">
+            <div className="relative z-[5] flex h-[34.6154px] items-center justify-center rounded-[19.2308px] border border-solid bg-suvakta-600 px-[11.5385px] text-white md:h-8 md:px-[10.6667px] md:rounded-[17.7778px]">
               <span className="font-bold">{props.speakerName}</span>
             </div>
           </div>

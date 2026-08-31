@@ -4,6 +4,7 @@ import { useLenis } from "lenis/react";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/sections/Navbar";
 import { LeaderboardCard } from "@/components/ui/leaderboard-card";
+import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 const PODIUM = [
   {
@@ -106,6 +107,7 @@ const RANKINGS = [
 
 export const LeaderboardPage = () => {
   const lenis = useLenis();
+  const appNavigate = useAppNavigate();
 
   useLayoutEffect(() => {
     lenis?.resize();
@@ -120,6 +122,10 @@ export const LeaderboardPage = () => {
         <div className="mb-6 flex flex-col gap-4 md:mb-8">
           <Link
             to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              appNavigate("/");
+            }}
             className="inline-flex w-fit items-center gap-2 rounded-full border border-suvakta-900 bg-white px-4 py-2 text-sm font-bold shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
