@@ -5,7 +5,7 @@ export type ExpectationItemProps = {
 
 export const ExpectationItem = (props: ExpectationItemProps) => {
   return (
-    <div className="section-copy relative flex h-[clamp(4.5rem,14vw,5.75rem)] items-center justify-center overflow-hidden border-x-white border-b border-b-suvakta-900 border-t-white md:h-[85.3333px]">
+    <div className="section-copy relative flex h-[clamp(4.5rem,14vw,5.75rem)] items-center justify-center overflow-hidden border-b border-b-suvakta-900 md:h-[85.3333px]">
       <div
         className={`pointer-events-none absolute shadow-[rgba(0,0,0,0.15)_0px_-7.69231px_0px_0px] md:shadow-[rgba(0,0,0,0.15)_0px_-7.11111px_0px_0px] ${props.markerClassName}`}
       />

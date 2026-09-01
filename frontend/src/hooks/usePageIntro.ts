@@ -158,6 +158,14 @@ export function usePageIntro(lenis?: Lenis | null) {
   const lenisRef = useRef(lenis);
   lenisRef.current = lenis;
 
+  // Lenis mounts asynchronously. Stop it as soon as it's available if the intro is running.
+  useLayoutEffect(() => {
+    if (!introHasPlayed && lenis) {
+      lenis.stop();
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, [lenis]);
+
   useLayoutEffect(() => {
     const getLenis = () => lenisRef.current;
 

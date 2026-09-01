@@ -1,26 +1,30 @@
 import * as React from "react";
-import { Chrome } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 export type SignIn1Props = {
-  onSuccess?: (email: string) => void;
+  onSubmit?: (email: string, password: string) => Promise<void>;
   title?: string;
   subtitle?: string;
+  onSignUpClick?: () => void;
 };
 
 const SignIn1 = ({
-  onSuccess,
+  onSubmit,
   title = "Welcome back",
   subtitle = "Sign in to view the leaderboard",
+  onSignUpClick,
 }: SignIn1Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const validateEmail = (value: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
@@ -30,12 +34,16 @@ const SignIn1 = ({
       return;
     }
     setError("");
-    onSuccess?.(email);
-  };
-
-  const handleGoogleSignIn = () => {
-    setError("");
-    onSuccess?.(email || "google-user@suvakta.app");
+    setLoading(true);
+    try {
+      await onSubmit?.(email, password);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Sign in failed. Please try again.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,19 +69,31 @@ const SignIn1 = ({
               type="email"
               value={email}
               autoComplete="email"
-              className="w-full rounded-xl bg-suvakta-50 px-5 py-3 text-sm text-suvakta-900 placeholder-suvakta-900/40 focus:outline-none focus:ring-2 focus:ring-suvakta-accent border border-suvakta-900/10 transition-shadow"
+              disabled={loading}
+              className="w-full rounded-xl bg-suvakta-50 px-5 py-3 text-sm text-suvakta-900 placeholder-suvakta-900/40 focus:outline-none focus:ring-2 focus:ring-suvakta-accent border border-suvakta-900/10 transition-shadow disabled:opacity-60"
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
             />
-            <input
-              placeholder="Password"
-              type="password"
-              value={password}
-              autoComplete="current-password"
-              className="w-full rounded-xl bg-suvakta-50 px-5 py-3 text-sm text-suvakta-900 placeholder-suvakta-900/40 focus:outline-none focus:ring-2 focus:ring-suvakta-accent border border-suvakta-900/10 transition-shadow"
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
-            />
+            <div className="relative">
+              <input
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                autoComplete="current-password"
+                disabled={loading}
+                className="w-full rounded-xl bg-suvakta-50 px-5 py-3 pr-12 text-sm text-suvakta-900 placeholder-suvakta-900/40 focus:outline-none focus:ring-2 focus:ring-suvakta-accent border border-suvakta-900/10 transition-shadow disabled:opacity-60"
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSignIn()}
+              />
+              <button
+                type="button"
+                tabIndex={-1}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-suvakta-900/40 hover:text-suvakta-900/70 transition-colors"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {error ? (
               <div className="text-left text-sm font-bold text-red-500">{error}</div>
             ) : null}
@@ -85,24 +105,32 @@ const SignIn1 = ({
             <button
               type="button"
               onClick={handleSignIn}
-              className="mb-3 w-full rounded-full bg-suvakta-accent px-5 py-3 text-sm font-bold text-suvakta-950 shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none border border-suvakta-900"
+              disabled={loading}
+              className="mb-3 w-full rounded-full bg-suvakta-accent px-5 py-3 text-sm font-bold text-suvakta-950 shadow-[rgba(0,0,0,0.15)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none border border-suvakta-900 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign in
-            </button>
-
-            <button
-              type="button"
-              onClick={handleGoogleSignIn}
-              className="mb-2 flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-suvakta-900 shadow-[rgba(0,0,0,0.1)_0px_3px_0px_0px] transition hover:translate-y-px hover:shadow-none border border-suvakta-900/20 hover:bg-suvakta-50"
-            >
-              <Chrome className="h-5 w-5" aria-hidden />
-              Continue with Google
+              {loading ? (
+                <span className="inline-flex items-center gap-2">
+                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
+                    <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
+                  </svg>
+                  Signing in…
+                </span>
+              ) : (
+                "Sign in"
+              )}
             </button>
 
             <div className="mt-4 w-full text-center">
               <span className="text-xs font-medium text-suvakta-800/70">
                 Don&apos;t have an account?{" "}
-                <span className="text-suvakta-600 underline hover:text-suvakta-900 cursor-pointer font-bold">Sign up, it&apos;s free!</span>
+                <button
+                  type="button"
+                  onClick={onSignUpClick}
+                  className="text-suvakta-600 underline hover:text-suvakta-900 cursor-pointer font-bold"
+                >
+                  Sign up, it&apos;s free!
+                </button>
               </span>
             </div>
           </div>

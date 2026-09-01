@@ -29,7 +29,7 @@ export const CtaSection = () => {
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <a
-                href="https://lu.ma/aq1a429h"
+                href="#"
                 className="relative flex h-11 min-h-11 w-full max-w-[18rem] items-center justify-center rounded-[153.846px] border border-suvakta-900 bg-white px-6 text-suvakta-900 shadow-[rgba(0,0,0,0.15)_0px_3.84615px_0px_0px] hover:shadow-[rgba(0,0,0,0.5)_0px_0px_0px_0px] md:h-[39.1111px] md:max-w-none md:rounded-[142.222px] md:shadow-[rgba(0,0,0,0.15)_0px_3.55556px_0px_0px]"
               >
                 <span className="text-[clamp(0.875rem,2.5vw,1.08rem)] font-bold tracking-[-0.173077px] md:text-[14.2222px] md:tracking-[-0.142222px]">

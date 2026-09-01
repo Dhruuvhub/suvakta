@@ -7,7 +7,9 @@ import { AuthProvider } from "@/context/AuthContext";
 import { TransitionProvider } from "@/context/TransitionContext";
 import { HomePage } from "@/pages/HomePage";
 import { LoginPage } from "@/pages/LoginPage";
+import { SignUpPage } from "@/pages/SignUpPage";
 import { LeaderboardPage } from "@/pages/LeaderboardPage";
+import { ProfilePage } from "@/pages/ProfilePage";
 
 function AppRoutes() {
   return (
@@ -15,6 +17,15 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/leaderboard"
           element={

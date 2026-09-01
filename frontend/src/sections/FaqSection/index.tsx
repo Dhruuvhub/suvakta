@@ -6,10 +6,10 @@ export const FaqSection = () => {
     <section className="section-copy relative bg-suvakta-50 pb-4 md:pb-[142.222px]">
       <div className="section-container">
         <div className="flex justify-center pb-[clamp(2rem,8vw,3.8rem)] md:pb-[56.8889px]">
-          <h2 className="flex max-w-[min(100%,30rem)] flex-col items-center text-center font-sugar_peachy text-[clamp(1.75rem,8vw,3rem)] leading-[1.1] md:max-w-[577.778px] md:text-[57.7778px] md:leading-[52px]">
-            Frequently Asked{" "}
-            <span className="relative mt-2 rotate-[2deg] rounded-[3.00481px] border border-suvakta-900 bg-suvakta-600 px-3 py-2 text-white shadow-[rgba(0,0,0,0.15)_0px_4.80769px_0px_0px] md:mt-[3.25px] md:rotate-[3.0000011085596214deg] md:px-[13px] md:py-[7.8px] md:text-[52px] md:leading-[46.8px] md:shadow-[rgba(0,0,0,0.15)_0px_5.2px_0px_0px] md:rounded-[3.25px]">
-              Questions
+          <h2 className="flex max-w-[min(100%,30rem)] flex-col items-center gap-2 text-center font-quicksand text-[clamp(2rem,8vw,3.5rem)] font-bold leading-[1.1] text-suvakta-900 md:max-w-none md:flex-row md:gap-x-4 md:gap-y-4 md:text-start md:text-[72px] md:leading-[1.1]">
+            Frequently Asked
+            <span className="relative rotate-[-1deg] rounded-[3.88px] border border-suvakta-900 bg-suvakta-500 px-[10.87px] py-1 text-white shadow-[rgba(0,0,0,0.15)_0px_4.66px_0px_0px] md:rotate-[-1deg] md:px-[18px] md:py-[6px] md:text-[68px] md:leading-[1.1] md:shadow-[rgba(0,0,0,0.15)_0px_6px_0px_0px] md:rounded-[6px]">
+              QUESTIONS
             </span>
           </h2>
         </div>

@@ -1,9 +1,9 @@
 import "dotenv/config";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL ?? "file:./prisma/dev.db",
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
 });
 const prisma = new PrismaClient({ adapter });
 
@@ -76,17 +76,9 @@ const USERS = [
 
 async function main() {
   // Clear existing demo data (order matters for FKs)
-  await prisma.leaderboardRanking.deleteMany();
-  await prisma.leaderboardRun.deleteMany();
+  await prisma.delegation.deleteMany();
   await prisma.user.deleteMany();
-
-  const run = await prisma.leaderboardRun.create({
-    data: {
-      label: "Week of May 1",
-      fromDate: new Date("2026-05-01"),
-      toDate: new Date("2026-05-07"),
-    },
-  });
+  await prisma.teamMember.deleteMany();
 
   for (const entry of USERS) {
     const user = await prisma.user.create({
@@ -94,22 +86,27 @@ async function main() {
         email: entry.email,
         name: entry.name,
         avatarUrl: entry.avatarUrl,
+        role: "member",
+        department: "USG Delegate Affairs",
+        year: "1st Year",
       },
     });
 
-    await prisma.leaderboardRanking.create({
+    // Create a sample approved delegation for each user so they have points on the leaderboard
+    await prisma.delegation.create({
       data: {
-        runId: run.id,
         userId: user.id,
-        rank: entry.rank,
-        value: entry.value,
-        byline: entry.byline,
-        displayed: true,
+        munName: "Demo MUN 2026",
+        hostCollege: "Demo College",
+        delegationType: "Individual",
+        awardsWon: entry.byline, // Repurposing byline for awards won in demo
+        status: "approved",
+        points: Math.floor(entry.value / 1000), // Scale down points for demo
       },
     });
   }
 
-  console.log(`Seeded ${USERS.length} users + 1 leaderboard run.`);
+  console.log(`Seeded ${USERS.length} users and their delegations.`);
 }
 
 main()

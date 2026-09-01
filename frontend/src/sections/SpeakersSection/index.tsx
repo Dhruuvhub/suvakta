@@ -23,28 +23,12 @@ export const SpeakersSection = () => {
             </div>
             <div className="order-4 md:order-none">
               <SpeakerCard
-                category="Animation"
-                imageUrl="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682b70ae1a2b3c4d5e6f7a8b_cassie-evans.avif"
-                speakerName="Cassie Evans"
+                category="Treasurer"
+                imageUrl="https://i.ibb.co/5NH4xb4/Chat-GPT-Image-Aug-31-2026-02-41-25-PM.png"
+                speakerName="Ms. Eliza Sneh"
                 description={
                   <>
-                    Our GSAP{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      fairy codemother
-                    </strong>{" "}
-                    is here to sprinkle some{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      tween
-                    </strong>{" "}
-                    magic,{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      animation
-                    </strong>{" "}
-                    goodness &amp; Webflow&apos;s deepest darkest{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      secrets
-                    </strong>{" "}
-                    now she&apos;s on the inside.
+                    Pretty like a fairy. Often faces an existential crisis while dealing with sponsors but well- shes gets the job done.
                   </>
                 }
               />
@@ -55,50 +39,24 @@ export const SpeakersSection = () => {
           <div className="contents md:flex md:flex-col md:gap-y-[56.8889px]">
             <div className="order-2 md:order-none">
               <SpeakerCard
-                category="Keynote"
-                imageUrl="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682b70ae8f2a1c3d4e5f6a7b_vlad-magdalin.avif"
-                speakerName="Vlad Magdalin"
+                category="President"
+                imageUrl="https://i.ibb.co/1f4YkgWv/Chat-GPT-Image-Aug-31-2026-02-09-00-PM.png"
+                speakerName="Ms. Kritika Suhani"
                 description={
                   <>
-                    Our founding Webflow father. Our dad joke aficionado. He puts
-                    the{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      mad
-                    </strong>{" "}
-                    into Magdalin and will be kicking off FlowFest &apos;25 as
-                    our keynote speaker!
+                    The woman who has made it her mission to lead the club in a visionary manner while also collecting sponsors like pokemons ;)
                   </>
                 }
               />
             </div>
             <div className="order-5 md:order-none">
               <SpeakerCard
-                category="Design"
-                imageUrl="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682b70aed8628a9e8a7f6acf_stephanie-bruce.avif"
-                speakerName="Stephanie Bruce"
+                category="Joint Secretary"
+                imageUrl="https://i.ibb.co/NgrW6sth/Chat-GPT-Image-Aug-31-2026-02-15-00-PM.png"
+                speakerName="Ms. Radhika Bathla"
                 description={
                   <>
-                    Devs want to{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      work
-                    </strong>{" "}
-                    with her, designers want to{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      be
-                    </strong>{" "}
-                    her. Steph has hit the ground running with her{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      stunning
-                    </strong>{" "}
-                    web work and will be sharing her expert{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      freelancer
-                    </strong>{" "}
-                    growth{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      tips
-                    </strong>
-                    .
+                    Fashionable, free spirited and laughing her way through life. She's someone who would understand you and definitely get the Administrative work done in seconds!
                   </>
                 }
               />
@@ -109,50 +67,24 @@ export const SpeakersSection = () => {
           <div className="contents md:flex md:flex-col md:gap-y-[56.8889px] md:pt-[71.1111px]">
             <div className="order-3 md:order-none">
               <SpeakerCard
-                category="Development"
-                imageUrl="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682b70ae9a3b2c1d0e5f4a6b_ilja-van-eck.avif"
-                speakerName="Ilja van Eck"
+                category="Vice president"
+                imageUrl="https://i.ibb.co/4nbYJcKX/Chat-GPT-Image-Aug-31-2026-02-18-01-PM.png"
+                speakerName="Ms. Aarya Lakhera"
                 description={
                   <>
-                    Oh &apos;Eck, we&apos;ve only gone and secured the web wizard
-                    himself. Co-founder of{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      Osmo
-                    </strong>{" "}
-                    &amp; Webflow superstar, we can&apos;t wait to learn from
-                    Ilja!
+                    The one who leads and loves with her whole heart. She's the one you go to when you need lowkey any advice and last minute crisis &lt;3
                   </>
                 }
               />
             </div>
             <div className="order-6 md:order-none md:mt-[71.1111px]">
               <SpeakerCard
-                category="Animation"
-                imageUrl="https://c.animaapp.com/mrxuckkzwKTRkk/assets/682b70ae1856b5e46b946d48_ross-plaskow.avif"
-                speakerName="Ross Plaskow"
+                category="MUN Co Ordinator"
+                imageUrl="https://i.ibb.co/ksxVVC4C/Chat-GPT-Image-Aug-31-2026-02-43-58-PM.png"
+                speakerName="Ms. Aishee Majumdar"
                 description={
                   <>
-                    We&apos;ve all wanted to{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      animate
-                    </strong>{" "}
-                    something cool with{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      Rive
-                    </strong>
-                    , and Ross is here to{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      show
-                    </strong>{" "}
-                    us how with his ridiculously{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      fun
-                    </strong>{" "}
-                    and{" "}
-                    <strong className="font-bold md:text-[15.1111px] md:leading-[19.6444px]">
-                      slick
-                    </strong>{" "}
-                    style.
+                    Aims to make MUNs appear non-intimidating for beginners, provide quality training and geopolitics sessions and also believes she has an amazing music taste.
                   </>
                 }
               />

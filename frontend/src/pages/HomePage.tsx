@@ -10,7 +10,6 @@ import { ExpectationsSection } from "@/sections/ExpectationsSection";
 import { CommunitySection } from "@/sections/CommunitySection";
 import { LoveSection } from "@/sections/LoveSection";
 import { FaqSection } from "@/sections/FaqSection";
-import { CtaSection } from "@/sections/CtaSection";
 import { Footer } from "@/sections/Footer";
 
 export const HomePage = () => {
@@ -34,7 +33,6 @@ export const HomePage = () => {
           <CommunitySection />
           <LoveSection />
           <FaqSection />
-          <CtaSection />
           <Footer />
         </div>
       </main>

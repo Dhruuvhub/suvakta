@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLenis } from "lenis/react";
 import { ArrowLeft } from "lucide-react";
 import { SignIn1 } from "@/components/ui/modern-stunning-sign-in";
-import { LEADERBOARD_PATH, useAuth } from "@/context/AuthContext";
+import { LEADERBOARD_PATH, SIGNUP_PATH, useAuth } from "@/context/AuthContext";
 import { useAppNavigate } from "@/hooks/useAppNavigate";
 
 export function LoginPage() {
@@ -27,8 +27,8 @@ export function LoginPage() {
     };
   }, [lenis]);
 
-  const handleSuccess = (email: string) => {
-    signIn(email);
+  const handleSubmit = async (email: string, password: string) => {
+    await signIn(email, password);
     appNavigate(redirectTo);
   };
 
@@ -47,9 +47,10 @@ export function LoginPage() {
       </Link>
 
       <SignIn1
-        onSuccess={handleSuccess}
+        onSubmit={handleSubmit}
         title="Sign in to Suvakta"
         subtitle="You need an account before viewing the leaderboard."
+        onSignUpClick={() => appNavigate(SIGNUP_PATH)}
       />
     </div>
   );

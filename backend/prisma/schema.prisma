@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 /// Registered account used for login / leaderboard access
@@ -17,41 +17,50 @@ model User {
   passwordHash String?
   name         String?
   avatarUrl    String?
+  role         String   @default("member") // "member" | "admin"
+  department   String?
+  year         String?
+  collegeEmail String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  rankings LeaderboardRanking[]
+  delegations Delegation[]
 }
 
-/// A leaderboard period (e.g. "Week of May 1")
-model LeaderboardRun {
-  id        String   @id @default(cuid())
-  label     String
-  fromDate  DateTime
-  toDate    DateTime
-  createdAt DateTime @default(now())
-
-  rankings LeaderboardRanking[]
-}
-
-/// One user's placement on a given run
-model LeaderboardRanking {
-  id        String  @id @default(cuid())
-  rank      Int
-  value     Int
-  byline    String?
-  displayed Boolean @default(true)
+/// MUN delegation record — submitted by members, reviewed by admins
+model Delegation {
+  id             String   @id @default(cuid())
+  munName        String   // e.g. "Harvard MUN 2026"
+  hostCollege    String   // e.g. "St. Stephen's College"
+  delegationType String   // e.g. "Individual", "Team"
+  awardsWon      String   @default("None")
+  certificateUrl String?
+  status         String   @default("pending") // "pending" | "approved" | "rejected"
+  points         Int      @default(0)
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  runId String
-  run   LeaderboardRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+/// Team member for the public team page
+model TeamMember {
+  id           String  @id @default(cuid())
+  fullName     String
+  roleTitle    String  // e.g. "President", "USG Delegate Affairs"
+  tier         String  // "core" | "secretariat"
+  message      String? // short bio or message
+  email        String?
+  photoUrl     String?
+  displayOrder Int     @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([runId, userId])
-  @@unique([runId, rank])
-  @@index([runId, rank])
+  @@index([displayOrder])
 }
